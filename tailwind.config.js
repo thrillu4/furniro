@@ -5,7 +5,10 @@ export default {
     extend: {
       backgroundImage: {
         'new-collection': "url('/images/new-collection.png')",
-      }
+      },
+      height: {
+        '582': '582px',
+      },
     },
   },
   plugins: [],

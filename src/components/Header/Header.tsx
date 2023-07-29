@@ -6,7 +6,7 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 
 const Header = () => {
   return (
-    <nav className="nav flex justify-between items-center py-9">
+    <nav className="nav flex justify-between items-center pt-9">
       <Link to={ROUTES.HOME} className="logo-wrap flex items-center cursor-pointer">
         <img src="images/main-logo.png" alt="logo" />
         <div className="name-site text-3xl ml-1 font-bold">Furniro</div>
