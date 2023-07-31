@@ -2,15 +2,20 @@ import { useState } from 'react'
 import Pagination from './Pagination'
 import products from '../../data/products.json'
 
-import {MdCompareArrows, MdNavigateNext, MdOutlineSupportAgent} from 'react-icons/md'
+import {MdCompareArrows, MdNavigateNext} from 'react-icons/md'
 import {GiSettingsKnobs} from 'react-icons/gi'
 import {AiFillCaretDown, AiOutlineHeart} from 'react-icons/ai'
 import {BsArrowDownShort, BsArrowUpShort, BsFillShareFill} from 'react-icons/bs'
-import {GrTrophy} from 'react-icons/gr'
-import {IoMdCheckmarkCircleOutline} from 'react-icons/io'
-import { TbTruckDelivery } from 'react-icons/tb'
+import { Product } from '../../data/productTypes'
+import { useAppDispatch} from '../store/slices/hooks'
+import { addToCart } from '../store/cartSlice'
+import Recommended from '../Recommended/Recommended'
 
-const Shop = () => {
+type ProductProps = {
+  product: Product;
+};
+
+const Shop: React.FC<ProductProps> = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(16);
   const [sortedProducts, setSortedProducts] = useState(products.products)
@@ -20,6 +25,14 @@ const Shop = () => {
   const lastPostIndex = currentPage * productsPerPage;
   const firstPostIndex = lastPostIndex - productsPerPage;
   const currentPosts = sortedProducts.slice(firstPostIndex, lastPostIndex);
+
+  //redux
+  const dispatch = useAppDispatch();
+
+  const handleAddToCart = (currProduct: Product) => {
+    dispatch(addToCart(currProduct));
+  };
+  //redux
 
   const changeProductsPerPage = (num: number): void => {
     if(currentPage === 1) {
@@ -100,7 +113,8 @@ const Shop = () => {
       </div>
       <div className="products-list mt-16 grid grid-cols-4 gap-8">
         {currentPosts
-        .map(({image, title, subtitle, id, price, promotional, promotionalPrice, percent, newProduct}) => {
+        .map(( currentProduct ) => {
+          const {image, title, subtitle, id, price, promotional, promotionalPrice, percent, newProduct} = currentProduct
           return (
             <div key={id} className="product-list-item relative ">
               <img className="w-full" src={image} alt="syltherine" />
@@ -116,7 +130,7 @@ const Shop = () => {
               </div>
               </div>
               <div className="absolute inset-0 bg-gray-600 opacity-0 hover:opacity-75 transition-opacity">
-                <button className="my-0 mx-auto mt-52 block py-3 bg-white text-orange-500 font-semibold px-14">Add to cart</button>
+                <button onClick={() => handleAddToCart(currentProduct)} className="my-0 mx-auto mt-52 block py-3 bg-white text-orange-500 font-semibold px-14">Add to cart</button>
                 <div className="mt-6 flex items-center justify-evenly text-white font-semibold">
                   <div className='flex items-center gap-1 cursor-pointer'><BsFillShareFill size='12' color='#fff'/>Share</div>
                   <div className='flex items-center gap-1 cursor-pointer'><MdCompareArrows size='20' color='#fff'/>Compare</div>
@@ -133,36 +147,7 @@ const Shop = () => {
         currentPage={currentPage}
         totalPages={totalPages}
         />
-        <div className='flex items-center justify-between py-28 mt-24'>
-          <div className='flex items-center gap-3'>
-            <GrTrophy size='60'/>
-            <div>
-              <div className='text-2xl font-semibold'>High Quality</div>
-              <div className='text-xl font-medium text-gray-400'>Crafted from top materials</div>
-            </div>
-          </div>
-          <div className='flex items-center gap-3'>
-            <IoMdCheckmarkCircleOutline size='60'/>
-            <div>
-              <div className='text-2xl font-semibold'>Warranty Protection</div>
-              <div className='text-xl font-medium text-gray-400'>Over 2 years</div>
-            </div>
-          </div>
-          <div className='flex items-center gap-3'>
-            <TbTruckDelivery size='60'/>
-            <div>
-              <div className='text-2xl font-semibold'>Free Shipping</div>
-              <div className='text-xl font-medium text-gray-400'>Order over 150 $</div>
-            </div>
-          </div>
-          <div className='flex items-center gap-3'>
-            <MdOutlineSupportAgent size='60'/>
-            <div>
-              <div className='text-2xl font-semibold'>24 / 7 Support</div>
-              <div className='text-xl font-medium text-gray-400'>Dedicated support</div>
-            </div>
-          </div>
-        </div>
+        <Recommended/>
     </section>
   )
 }
