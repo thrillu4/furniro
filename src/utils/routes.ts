@@ -1,10 +1,11 @@
 export const ROUTES = {
     HOME: '',
     SHOP: '/shop',
-    SingleProduct: '/product/:productId',
+    SingleProduct: '/shop/:id',
     COMPARISON: '/comparison',
     CART: '/cart',
     CHECKOUT: '/checkout',
-    CONTACTS: '/contacts',
-    BLOG: '/blog'
+    CONTACT: '/contact',
+    BLOG: '/blog',
+    PrivacyPolicies: '/pp'
 }

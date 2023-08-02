@@ -5,7 +5,7 @@ import { TbTruckDelivery } from "react-icons/tb"
 
 const Recommended = () => {
   return (
-    <div className='flex items-center justify-between py-28 mt-24 bg-orange-100 px-10'>
+    <div className='flex items-center justify-between py-[100px] mt-24 bg-[#FAF3EA] px-10'>
           <div className='flex items-center gap-3'>
             <GrTrophy size='60'/>
             <div>

@@ -7,7 +7,6 @@ interface PaginationProps {
 }
 const Pagination: React.FC<PaginationProps> = ({ productsPerPage, setCurrentPage, totalProducts, currentPage, totalPages }) => {
     const pages = [];
-
     for(let i = 1; i <= Math.ceil(totalProducts/productsPerPage); i++) {
         pages.push(i)
     }
@@ -21,6 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({ productsPerPage, setCurrentPage
       };
 
   return (
+    !(productsPerPage == totalProducts) && 
     <div className="flex items-center justify-center mt-10">
         <button
             onClick={handlePrevClick}
@@ -37,7 +37,7 @@ const Pagination: React.FC<PaginationProps> = ({ productsPerPage, setCurrentPage
         }
         <button
             onClick={handleNextClick}
-            disabled={currentPage === totalPages}
+            disabled={currentPage >= totalPages}
             className={`mx-2 px-7 py-4 text-xl rounded bg-yellow-50`}
             >
             Next

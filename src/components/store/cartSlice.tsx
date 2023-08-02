@@ -5,7 +5,7 @@ type ProductState = {
     list: Product[];
 }
 
-const initialState: ProductState = {
+const initialState: ProductState = { 
     list: [],
 }
 

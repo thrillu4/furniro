@@ -2,14 +2,15 @@ import { useState } from 'react'
 import Pagination from './Pagination'
 import products from '../../data/products.json'
 
-import {MdCompareArrows, MdNavigateNext} from 'react-icons/md'
+import {MdNavigateNext} from 'react-icons/md'
 import {GiSettingsKnobs} from 'react-icons/gi'
-import {AiFillCaretDown, AiOutlineHeart} from 'react-icons/ai'
-import {BsArrowDownShort, BsArrowUpShort, BsFillShareFill} from 'react-icons/bs'
+import {AiFillCaretDown} from 'react-icons/ai'
+import {BsArrowDownShort, BsArrowUpShort} from 'react-icons/bs'
 import { Product } from '../../data/productTypes'
 import { useAppDispatch} from '../store/slices/hooks'
 import { addToCart } from '../store/cartSlice'
 import Recommended from '../Recommended/Recommended'
+import ProductList from './ProductList'
 
 type ProductProps = {
   product: Product;
@@ -22,9 +23,7 @@ const Shop: React.FC<ProductProps> = () => {
 
   const totalProducts = products.products.length;
   const totalPages = totalProducts / productsPerPage;
-  const lastPostIndex = currentPage * productsPerPage;
-  const firstPostIndex = lastPostIndex - productsPerPage;
-  const currentPosts = sortedProducts.slice(firstPostIndex, lastPostIndex);
+
 
   //redux
   const dispatch = useAppDispatch();
@@ -72,7 +71,7 @@ const Shop: React.FC<ProductProps> = () => {
           <GiSettingsKnobs/>
           <div className=' text-xl ml-3'>Filter</div>
           <div className="divider border-t bg-gray-300 h-9 w-0.5 mx-9"></div>
-          <div>Showing <span>{productsPerPage * currentPage}</span> of <span>{totalProducts}</span> results</div>
+          <div>Showing <span>{productsPerPage * currentPage >= totalProducts ? totalProducts : productsPerPage * currentPage}</span> of <span>{totalProducts}</span> results</div>
         </div>
         <div className="flex items-center">
           <div className='mr-4 text-xl'>Show</div>
@@ -111,36 +110,7 @@ const Shop: React.FC<ProductProps> = () => {
     </div>
         </div>
       </div>
-      <div className="products-list mt-16 grid grid-cols-4 gap-8">
-        {currentPosts
-        .map(( currentProduct ) => {
-          const {image, title, subtitle, id, price, promotional, promotionalPrice, percent, newProduct} = currentProduct
-          return (
-            <div key={id} className="product-list-item relative ">
-              <img className="w-full" src={image} alt="syltherine" />
-              <div className='absolute top-6 right-6'>
-                {promotional && <div className='text-white bg-red-400 rounded-full py-3 px-2 font-semibold'>{percent}</div> || newProduct && <div className='text-white bg-teal-500 rounded-full py-3 px-2 font-semibold'>New</div>}
-              </div>
-              <div className="px-4 pt-4 pb-7">
-              <div className="font-semibold text-2xl">{title}</div>
-              <div className="text-zinc-400 my-2">{subtitle}</div>
-              <div className="flex justify-between items-center">
-                <div className="font-semibold text-xl">{promotional ? promotionalPrice : price}</div>
-                <div className="text-zinc-400 line-through">{promotional ? price : promotionalPrice}</div>
-              </div>
-              </div>
-              <div className="absolute inset-0 bg-gray-600 opacity-0 hover:opacity-75 transition-opacity">
-                <button onClick={() => handleAddToCart(currentProduct)} className="my-0 mx-auto mt-52 block py-3 bg-white text-orange-500 font-semibold px-14">Add to cart</button>
-                <div className="mt-6 flex items-center justify-evenly text-white font-semibold">
-                  <div className='flex items-center gap-1 cursor-pointer'><BsFillShareFill size='12' color='#fff'/>Share</div>
-                  <div className='flex items-center gap-1 cursor-pointer'><MdCompareArrows size='20' color='#fff'/>Compare</div>
-                  <div className='flex items-center gap-1 cursor-pointer'><AiOutlineHeart color='#fff'/>Like</div>
-                </div>
-              </div>
-            </div>
-          )
-        })}
-        </div>
+        <ProductList productsPerPage={productsPerPage} currentPage={currentPage} handleAddToCart={handleAddToCart} sortedProducts={sortedProducts}/>
         <Pagination productsPerPage={productsPerPage}
         setCurrentPage={setCurrentPage}
         totalProducts={totalProducts}

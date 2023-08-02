@@ -4,9 +4,13 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
-import {BsFillShareFill} from 'react-icons/bs'
-import {MdCompareArrows} from 'react-icons/md'
-import {AiOutlineHeart} from 'react-icons/ai'
+import ProductList from '../Shop/ProductList';
+import { Product } from '../../data/productTypes';
+import { useAppDispatch } from '../store/slices/hooks';
+import { addToCart } from '../store/cartSlice';
+import products from '../../data/products.json'
+import { ROUTES } from '../../utils/routes';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -17,6 +21,11 @@ const Home = () => {
       
       return `<span class='${className} w-7 h-7 border bg-white border-orange-400'><span class=" w-3 h-3 border rounded-full flex items-center bg-orange-400 my-auto mt-[7px] mx-auto"></span></span>`;
     },
+  };
+
+  const dispatch = useAppDispatch();
+  const handleAddToCart = (currProduct: Product) => {
+    dispatch(addToCart(currProduct));
   };
 
   return (
@@ -52,28 +61,8 @@ const Home = () => {
       </div>
       <div className="our-product">
         <h2 className="text-center font-bold text-3xl mt-11 mb-11">Our Product</h2>
-        <div className="products-list grid grid-cols-4 gap-8">
-          <div className="product-list-item relative ">
-            <img className="w-full" src="images/syltherine.png" alt="syltherine" />
-            <div className="px-4 pt-4 pb-7">
-            <div className="font-semibold text-2xl">Syltherine</div>
-            <div className="text-zinc-400 my-2">Stylish cafe chair</div>
-            <div className="flex justify-between items-center">
-              <div className="font-semibold text-xl">Rp 2.500.000</div>
-              <div className="text-zinc-400 line-through">Rp 3.500.000</div>
-            </div>
-            </div>
-            <div className="absolute inset-0 bg-gray-600 opacity-0 hover:opacity-75 transition-opacity">
-              <button className="my-0 mx-auto mt-52 block py-3 bg-white text-orange-500 font-semibold px-14">Add to cart</button>
-              <div className="mt-6 flex items-center justify-evenly text-white font-semibold">
-                <div className='flex items-center gap-1 cursor-pointer'><BsFillShareFill size='12' color='#fff'/>Share</div>
-                <div className='flex items-center gap-1 cursor-pointer'><MdCompareArrows size='20' color='#fff'/>Compare</div>
-                <div className='flex items-center gap-1 cursor-pointer'><AiOutlineHeart color='#fff'/>Like</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button className='block my-0 mx-auto font-semibold border border-orange-300 text-orange-400 py-3 px-20 mt-11'>Show More</button>
+        <ProductList currentPage={1} productsPerPage={8} handleAddToCart={handleAddToCart} sortedProducts={products.products}/>
+        <Link to={ROUTES.SHOP}><button className='block my-0 mx-auto font-semibold border border-orange-300 text-orange-400 py-3 px-20 mt-11'>Show More</button></Link>
       </div>
       <div className="slider-component relative mt-16">
         <div className='mt-56 ml-24 mb-60'>
