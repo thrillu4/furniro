@@ -1,18 +1,18 @@
 import { AiOutlineHeart } from "react-icons/ai"
 import { BsFillShareFill } from "react-icons/bs"
 import { MdCompareArrows } from "react-icons/md"
-import { Product } from '../../data/productTypes'
 import { Link } from "react-router-dom";
+import { Product } from "../../data/productTypes";
 
 interface ProductListProps {
     currentPage: number,
     productsPerPage: number,
+    handleAddToFavorite: (currentProduct: Product) => void,
     handleAddToCart: (currentProduct: Product) => void,
-    sortedProducts: Product[];
+    sortedProducts: Product[]
 }
 
-const ProductList: React.FC<ProductListProps> = ({currentPage, productsPerPage, handleAddToCart, sortedProducts}) => {
-
+const ProductList: React.FC<ProductListProps> = ({currentPage, productsPerPage, handleAddToCart, handleAddToFavorite, sortedProducts}) => {
 const lastPostIndex = currentPage * productsPerPage;
 const firstPostIndex = lastPostIndex - productsPerPage;
 const currentPosts = sortedProducts.slice(firstPostIndex, lastPostIndex);
@@ -41,7 +41,7 @@ const currentPosts = sortedProducts.slice(firstPostIndex, lastPostIndex);
                 <div className="mt-6 flex items-center justify-evenly">
                 <div className='flex items-center gap-1 cursor-pointer'><BsFillShareFill size='12' color='#fff'/>Share</div>
                 <div className='flex items-center gap-1 cursor-pointer'><MdCompareArrows size='20' color='#fff'/>Compare</div>
-                <div className='flex items-center gap-1 cursor-pointer'><AiOutlineHeart color='#fff'/>Like</div>
+                <div onClick={() => handleAddToFavorite(currentProduct)} className='flex items-center gap-1 cursor-pointer'><AiOutlineHeart color='#fff'/>Like</div>
                 </div>
                 <Link to={`/shop/${id}`} className="text-center mx-auto mt-16 border border-white block w-28 py-3">Show More</Link>
             </div>

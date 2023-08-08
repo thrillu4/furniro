@@ -7,5 +7,10 @@ export type Product = {
     promotional: boolean,
     promotionalPrice: string,
     percent?: string,
-    newProduct: boolean
+    newProduct: boolean,
+    quantity?: number,
+    reviews?: number,
+    rating?: string,
+    category?: string,
+    color?: string
 }

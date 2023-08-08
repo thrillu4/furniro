@@ -7,9 +7,9 @@ function App() {
   return (
     <div className='container'>
       <Header/>
-    <AppRoutes/>
-    <ScrollToTop/>
-    <Footer/>
+        <AppRoutes/>
+        <ScrollToTop/>
+      <Footer/>
     </div>
   )
 }

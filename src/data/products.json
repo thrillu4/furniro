@@ -1,7 +1,7 @@
 {
     "products": [
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "100",
@@ -9,20 +9,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "101",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "102",
@@ -30,20 +38,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "103",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "104",
@@ -51,20 +67,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "105",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "106",
@@ -72,20 +96,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "107",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "108",
@@ -93,20 +125,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "109",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "110",
@@ -114,20 +154,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "111",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "112",
@@ -135,20 +183,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "113",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "114",
@@ -156,20 +212,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "115",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "116",
@@ -177,20 +241,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "117",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "118",
@@ -198,20 +270,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "119",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "120",
@@ -219,20 +299,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "121",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "122",
@@ -240,20 +328,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "123",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "124",
@@ -261,20 +357,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "125",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "126",
@@ -282,20 +386,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "127",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "128",
@@ -303,20 +415,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "129",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "130",
@@ -324,20 +444,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "131",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "132",
@@ -345,20 +473,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "133",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "134",
@@ -366,20 +502,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "135",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "136",
@@ -387,20 +531,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "137",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "138",
@@ -408,20 +560,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "139",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "140",
@@ -429,20 +589,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "141",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/lolito.png",
+            "image": "/images/lolito.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "142",
@@ -450,20 +618,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "143",
             "price": "Rp 500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": true
+            "newProduct": true,
+            "reviews": 102,
+            "rating": "4.9",
+            "category": "Coffee table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/syltherine.png",
+            "image": "/images/syltherine.png",
             "title": "Syltherine",
             "subtitle": "Stylish cafe chair",
             "id": "144",
@@ -471,20 +647,28 @@
             "promotional": true,
             "promotionalPrice": "Rp 2500",
             "percent": "30%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 323,
+            "rating": "4.8",
+            "category": "Table",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/leviosa.png",
+            "image": "/images/leviosa.png",
             "title": "Leviosa",
             "subtitle": "Stylish cafe chair",
             "id": "145",
             "price": "Rp 3500",
             "promotional": false,
             "promotionalPrice": "",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.1",
+            "category": "Chair",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Potty.png",
+            "image": "/images/Potty.png",
             "title": "Lolito",
             "subtitle": "Luxury big sofa",
             "id": "146",
@@ -492,10 +676,14 @@
             "promotional": true,
             "promotionalPrice": "Rp 7000",
             "percent": "50%",
-            "newProduct": false
+            "newProduct": false,
+            "reviews": 213,
+            "rating": "4.7",
+            "category": "Sofas",
+            "color": "#B2ADAA"
         },
         {
-            "image": "images/Respira.png",
+            "image": "/images/Respira.png",
             "title": "Respira",
             "subtitle": "Outdoor bar table and stool",
             "id": "147",

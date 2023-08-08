@@ -14,12 +14,12 @@ const Footer = () => {
       <li><Link to={ROUTES.HOME}>Home</Link></li>
         <li><Link to={ROUTES.SHOP}>Shop</Link></li>
         <li><Link to={ROUTES.BLOG}>Blog</Link></li>
-        <li><Link to={ROUTES.CONTACTS}>Contacts</Link></li>
+        <li><Link to={ROUTES.CONTACT}>Contact</Link></li>
       </ul>
       <ul className="third-colon font-medium flex flex-col gap-11"><div className="text-gray-400">Help</div>
-      <li>Payment Options</li>
-      <li>Returns</li>
-      <li>Privacy Policies</li>
+      <li><Link to={ROUTES.CONTACT}>Payment Options</Link></li>
+      <li><Link to={ROUTES.CONTACT}>Returns</Link></li>
+      <li><Link to={ROUTES.PrivacyPolicies}>Privacy Policies</Link></li>
       </ul>
       <div className="fourth-colon text-gray-400 flex flex-col gap-11">Newsletter
       <div>

@@ -8,7 +8,7 @@ import {AiFillCaretDown} from 'react-icons/ai'
 import {BsArrowDownShort, BsArrowUpShort} from 'react-icons/bs'
 import { Product } from '../../data/productTypes'
 import { useAppDispatch} from '../store/slices/hooks'
-import { addToCart } from '../store/cartSlice'
+import { addToCart, addToFavorite } from '../store/cartSlice'
 import Recommended from '../Recommended/Recommended'
 import ProductList from './ProductList'
 
@@ -30,6 +30,10 @@ const Shop: React.FC<ProductProps> = () => {
 
   const handleAddToCart = (currProduct: Product) => {
     dispatch(addToCart(currProduct));
+  };
+
+  const handleAddToFavorite = (currProduct: Product) => {
+    dispatch(addToFavorite(currProduct));
   };
   //redux
 
@@ -110,7 +114,7 @@ const Shop: React.FC<ProductProps> = () => {
     </div>
         </div>
       </div>
-        <ProductList productsPerPage={productsPerPage} currentPage={currentPage} handleAddToCart={handleAddToCart} sortedProducts={sortedProducts}/>
+        <ProductList productsPerPage={productsPerPage} currentPage={currentPage} handleAddToCart={handleAddToCart} handleAddToFavorite={handleAddToFavorite} sortedProducts={sortedProducts}/>
         <Pagination productsPerPage={productsPerPage}
         setCurrentPage={setCurrentPage}
         totalProducts={totalProducts}

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 interface PaginationProps {
     productsPerPage: number;
     setCurrentPage: (page: number) => void;
@@ -10,7 +12,17 @@ const Pagination: React.FC<PaginationProps> = ({ productsPerPage, setCurrentPage
     for(let i = 1; i <= Math.ceil(totalProducts/productsPerPage); i++) {
         pages.push(i)
     }
+    useEffect(() => {
+        scrollToStart()
+    }, [currentPage]);
 
+    const scrollToStart = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }
+    
     const handlePrevClick = () => {
         setCurrentPage(currentPage - 1);
       };

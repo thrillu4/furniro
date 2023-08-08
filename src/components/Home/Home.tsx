@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import ProductList from '../Shop/ProductList';
 import { Product } from '../../data/productTypes';
 import { useAppDispatch } from '../store/slices/hooks';
-import { addToCart } from '../store/cartSlice';
+import { addToCart, addToFavorite } from '../store/cartSlice';
 import products from '../../data/products.json'
 import { ROUTES } from '../../utils/routes';
 import { Link } from 'react-router-dom';
@@ -27,7 +27,9 @@ const Home = () => {
   const handleAddToCart = (currProduct: Product) => {
     dispatch(addToCart(currProduct));
   };
-
+  const handleAddToFavorite = (currProduct: Product) => {
+    dispatch(addToFavorite(currProduct));
+  };
   return (
     <>
       <div className="promo relative">
@@ -37,13 +39,13 @@ const Home = () => {
           <h2 className="font-bold text-5xl text-amber-500 mt-1">Discover Our<br/>
           New Collection
           </h2>
-          <div className="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorum doloremque aperiam atque animi.</div>
-          <button className="w-64 mt-11 py-6 font-bold bg-amber-500 text-white">BUY NOW</button>
+          <div className="mt-4 font-medium text-lg">Unveil a realm of captivating creations, where every piece tells a story of grace and allure.</div>
+          <Link to={ROUTES.SHOP} className="inline-block text-center mt-[46px] py-6 px-[74px] font-bold bg-amber-500 text-white">Show More</Link>
         </div>
       </div>
       <div className="range">
         <h2 className="range-header text-center font-bold text-3xl mt-11">Browse The Range</h2>
-        <div className="text-center text-xl text-zinc-400 mb-11">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</div>
+        <div className="text-center text-xl text-zinc-400 mb-11">Where exquisite furnishings await your discerning eye</div>
         <div className="items-wrapper flex justify-center items-center gap-4 ">
         <div className="range-item1">
           <img src="images/dining.png" alt="dining" />
@@ -61,7 +63,7 @@ const Home = () => {
       </div>
       <div className="our-product">
         <h2 className="text-center font-bold text-3xl mt-11 mb-11">Our Product</h2>
-        <ProductList currentPage={1} productsPerPage={8} handleAddToCart={handleAddToCart} sortedProducts={products.products}/>
+        <ProductList currentPage={1} productsPerPage={8} handleAddToCart={handleAddToCart} handleAddToFavorite={handleAddToFavorite} sortedProducts={products.products}/>
         <Link to={ROUTES.SHOP}><button className='block my-0 mx-auto font-semibold border border-orange-300 text-orange-400 py-3 px-20 mt-11'>Show More</button></Link>
       </div>
       <div className="slider-component relative mt-16">
@@ -69,7 +71,7 @@ const Home = () => {
           <h2 className='font-bold text-4xl'>50+ Beautiful rooms<br />
           inspiration</h2>
           <div className='font-medium mt-2 text-gray-500'>Our designer already made a lot of beautiful<br /> prototipe of rooms that inspire you</div>
-          <button className='font-semibold mt-9 py-3 px-8 text-white bg-orange-400'>Explore More</button>
+          <Link to={ROUTES.BLOG} className='block w-[176px] font-semibold mt-9 py-3 px-8 text-white bg-orange-400'>Explore More</Link>
         </div>
       <Swiper
         effect={'coverflow'}
