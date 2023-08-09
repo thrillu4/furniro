@@ -24,6 +24,11 @@ const Header = () => {
     setOpenFavorite(!isOpenFavorite)
   }
 
+  const closeMenus = () => {
+    setOpenCart(false);
+    setOpenFavorite(false);
+  }
+
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeFromCart(id));
   };
@@ -92,6 +97,13 @@ const Header = () => {
       </div>
     </div>
     }
+    {(isOpenFavorite || isOpenCart) && (
+        <div
+          className="fixed inset-0 bg-black opacity-40 z-50"
+          style={{ display: isOpenFavorite || isOpenCart ? "block" : "none" }}
+          onClick={closeMenus}
+        ></div>
+    )}
     {isOpenFavorite &&
     <div className="absolute w-[417px] bg-white right-0 top-0 p-9 z-[51]">
     <div className="flex items-center justify-between">

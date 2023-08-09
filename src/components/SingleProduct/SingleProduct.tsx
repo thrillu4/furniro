@@ -6,6 +6,8 @@ import { useAppDispatch } from '../store/slices/hooks';
 import { addToCart } from '../store/cartSlice';
 import { AiFillLinkedin, AiFillTwitterCircle } from 'react-icons/ai';
 import {BiLogoFacebookCircle} from 'react-icons/bi'
+import { Link } from 'react-router-dom';
+import TabContainer from './TabContainer';
 
 
 type SingleProductProps = {
@@ -13,7 +15,7 @@ type SingleProductProps = {
 };
 
 const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
-  const {id, image, price, promotional, promotionalPrice, title, quantity, category, rating, reviews, color} = product;
+  const {id, image, price, promotional, promotionalPrice, title, category, rating, reviews, color} = product;
 
   const dispatch = useAppDispatch();
 
@@ -68,10 +70,17 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
             <div className='text-[#9F9F9F] mb-[12px]'>Category <span className='ml-[16px] mr-[12px]'>:</span> {category}</div>
             <div className='text-[#9F9F9F] mb-[12px]'>Tags <span className='ml-[16px] mr-[12px]'>:</span> Sofa, Chair, Home, Shop</div>
             <div className='text-[#9F9F9F] mb-[12px] flex'>Share <span className='ml-[16px] mr-[12px]'>:</span>
-            <div className="inline-flex items-center gap-[25px] text-black"><BiLogoFacebookCircle size={24}/><AiFillLinkedin size={24}/><AiFillTwitterCircle size={24}/></div>
+            <div className="inline-flex items-center gap-[25px] text-black"><Link target="_blank" rel="noopener noreferrer" to={'https://www.facebook.com/'}><BiLogoFacebookCircle size={24}/></Link><Link target="_blank" rel="noopener noreferrer" to={'https://www.linkedin.com/'}><AiFillLinkedin size={24}/></Link><Link target="_blank" rel="noopener noreferrer" to={'https://twitter.com/'}><AiFillTwitterCircle size={24}/></Link></div>
             </div>
           </div>
         </div>
+      </div>
+      <div className='py-[60px]'>
+        <TabContainer reviews={reviews}/>
+      <div className='flex justify-center items-center gap-[30px]'>
+        <img src="/images/cloud-sofa1.png" alt="sofa" />
+        <img className='bg-orange' src="/images/cloud-sofa2.png" alt="sofa" />
+      </div>
       </div>
     </>
   )
