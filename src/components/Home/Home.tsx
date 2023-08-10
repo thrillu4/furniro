@@ -6,8 +6,8 @@ import 'swiper/css/pagination';
 
 import ProductList from '../Shop/ProductList';
 import { Product } from '../../data/productTypes';
-import { useAppDispatch } from '../store/slices/hooks';
-import { addToCart, addToFavorite } from '../store/cartSlice';
+import { useAppDispatch } from '../store/hooks';
+import { addToCart, addToFavorite } from '../store/slices/cartSlice';
 import products from '../../data/products.json'
 import { ROUTES } from '../../utils/routes';
 import { Link } from 'react-router-dom';

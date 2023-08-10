@@ -4,9 +4,9 @@ import { ROUTES } from "../../utils/routes";
 import { TbUserExclamation } from 'react-icons/tb'
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
 import { AiOutlineClose, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
-import { useAppDispatch, useAppSelector } from "../store/slices/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { IoIosCloseCircle, IoMdHeartDislike } from "react-icons/io";
-import { removeFromCart, removeFromFavorite } from '../store/cartSlice'
+import { removeFromCart, removeFromFavorite } from '../store/slices/cartSlice'
 
 const Header = () => {
   const [isOpenCart, setOpenCart] = useState(false);
@@ -87,7 +87,7 @@ const Header = () => {
       <div className="flex items-center">
         <div>Subtotal</div>
         <div className="text-[#B88E2F] text-bold ml-[100px]">
-          Rp. {cart.map(({price, promotional, promotionalPrice}) => promotional ? parseInt(promotionalPrice.slice(3)) : parseInt(price.slice(3)) * 1).reduce((prev, curr) => prev + curr, 0)}
+        Rp. {cart.map(({price, promotional, promotionalPrice, quantity}) => (promotional ? parseInt(promotionalPrice.slice(3)) : parseInt(price.slice(3))) * quantity).reduce((prev, curr) => prev + curr, 0)}
         </div>
       </div>
       <div className="flex items-center gap-[14px] mt-[50px]">

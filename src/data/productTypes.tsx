@@ -8,7 +8,7 @@ export type Product = {
     promotionalPrice: string,
     percent?: string,
     newProduct: boolean,
-    quantity?: number,
+    quantity: number,
     reviews?: number,
     rating?: string,
     category?: string,

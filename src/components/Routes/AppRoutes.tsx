@@ -11,6 +11,7 @@ import Cart from "../Cart/Cart";
 import Contact from "../Contact/Contact";
 import PrivacyPolicies from "../PrivacyPolicies/PrivacyPolicies";
 import SingleProductPage from "../SingleProduct/SingleProductPage";
+import SingleBlogPage from "../Blog/SingleBlogPage";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -31,17 +32,7 @@ const AppRoutes = () => {
         <Route index element={<Home />} />
         <Route
           path={ROUTES.SHOP}
-          element={showSpinner ? <Spinner /> : <Shop product={{
-            image: "",
-            title: "",
-            subtitle: "",
-            id: "",
-            price: "",
-            promotional: false,
-            promotionalPrice: "",
-            percent: undefined,
-            newProduct: false
-          }} />}
+          element={showSpinner ? <Spinner /> : <Shop/>}
         />
         <Route
           path={ROUTES.SingleProduct}
@@ -54,6 +45,7 @@ const AppRoutes = () => {
         <Route path={ROUTES.CHECKOUT} element={showSpinner ? <Spinner /> : <Checkout />} />
         <Route path={ROUTES.CONTACT} element={showSpinner ? <Spinner /> : <Contact />} />
         <Route path={ROUTES.BLOG} element={showSpinner ? <Spinner /> : <Blog />} />
+        <Route path={ROUTES.SingleBlogPage} element={showSpinner ? <Spinner /> : <SingleBlogPage/>}/>
         <Route path={ROUTES.COMPARISON} element={showSpinner ? <Spinner /> : <Comparison />} />
         <Route path={ROUTES.PrivacyPolicies} element={showSpinner ? <Spinner /> : <PrivacyPolicies />} />
       </Routes>

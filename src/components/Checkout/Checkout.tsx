@@ -3,10 +3,12 @@ import { MdNavigateNext } from "react-icons/md"
 import Recommended from "../Recommended/Recommended";
 import { ROUTES } from "../../utils/routes";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../store/hooks";
 
 const Checkout = () => {
   const [transferPayment, setTransferPayment] = useState(true);
   const [deliveryPayment, setDeliveryPayment] = useState(false);
+  const cart = useAppSelector(cart => cart.cart.cart)
 
   const toggleTransferPayment = () => {
     setTransferPayment(true);
@@ -66,18 +68,29 @@ const Checkout = () => {
               <div>Product</div>
               <div>Subtotal</div>
             </div>
-            <div className="flex justify-between items-center mb-3">
-              <div><span className="text-gray-400">Asgaard sofa</span> x 1</div>
-              <div>Rs. 250,000.00</div>
-            </div>
-            <div className="flex justify-between items-center mb-3">
-              <div >Subtotal</div>
-              <div>Rs. 250,000.00</div>
-            </div>
-            <div className="flex justify-between items-center mb-[60px]">
-              <div >Total</div>
-              <div className="font-bold text-2xl text-orange-400">Rs. 250,000.00</div>
-            </div>
+            {cart.length > 0 &&
+              <>
+                {cart.map(({title, id, quantity, promotional, promotionalPrice, price}) => {
+                  return (
+                    <div key={id} className="flex justify-between items-center mb-3">
+                      <div className="flex items-center">
+                        <div className="text-[#9F9F9F]">{title} </div>
+                        <div> <span className="mx-[11px]">x</span> {quantity}</div>
+                      </div>
+                      <div>Rp.{promotional ? parseInt(promotionalPrice.slice(3)) * quantity : parseInt(price.slice(3)) * quantity}</div>
+                    </div>
+                  )
+                })}
+                <div className="flex justify-between items-center mb-3">
+                  <div >Subtotal</div>
+                  <div>Rp. {cart.map(({price, promotional, promotionalPrice, quantity}) => (promotional ? parseInt(promotionalPrice.slice(3)) : parseInt(price.slice(3))) * quantity).reduce((prev, curr) => prev + curr, 0)}</div>
+                </div>
+                <div className="flex justify-between items-center mb-[60px]">
+                  <div >Total</div>
+                  <div className="font-bold text-2xl text-orange-400">Rp. {cart.map(({price, promotional, promotionalPrice, quantity}) => (promotional ? parseInt(promotionalPrice.slice(3)) : parseInt(price.slice(3))) * quantity).reduce((prev, curr) => prev + curr, 0)}</div>
+                </div>
+              </>
+            }
             <div className="flex gap-4 items-center mb-3">
               <input onChange={toggleTransferPayment} checked={transferPayment} type="checkbox" name="Transfer" id="Transfer" className="border border-[#9F9F9F] rounded-full w-[14px] h-[14px] "/>
               <label htmlFor="Transfer">Direct Bank Transfer</label>

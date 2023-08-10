@@ -7,5 +7,6 @@ export const ROUTES = {
     CHECKOUT: '/checkout',
     CONTACT: '/contact',
     BLOG: '/blog',
+    SingleBlogPage: '/blog/:itemId',
     PrivacyPolicies: '/pp'
 }

@@ -1,56 +1,24 @@
 import { MdNavigateNext } from "react-icons/md"
-import { useAppDispatch, useAppSelector } from "../store/slices/hooks"
-import { removeFromCart } from "../store/cartSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks"
+import { addToCart, removeFromCart } from "../store/slices/cartSlice";
 
-import CartItem from "./CartItem";
-import { useState, useEffect } from "react";
 import { ROUTES } from "../../utils/routes";
 import { Link } from "react-router-dom";
 import Recommended from "../Recommended/Recommended";
+import { TbTrashFilled } from "react-icons/tb";
+import { Product } from "../../data/productTypes";
 
 const Cart = () => {
-  const [subtotal, setSubtotal] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [quantities, setQuantities] = useState<{ [key: string]: number }>({});
   const cart = useAppSelector(cart => cart.cart.cart)
   const dispatch = useAppDispatch();
 
+  const changeQuantity = (item: Product, quantity: number) => {
+    dispatch(addToCart({ ...item, quantity }));
+  };
+  
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeFromCart(id));
   };
-
-  const handleQuantityChange = (itemId: string, newQuantity: number) => {
-    setQuantities(prevQuantities => ({
-      ...prevQuantities,
-      [itemId]: newQuantity
-    }));
-  };
-
-  useEffect(() => {
-    let newSubtotal = 0;
-    const newQuantities: { [key: string]: number } = {};
-  
-    cart.forEach((item) => {
-      const itemPrice = item.promotional
-        ? parseInt(item.promotionalPrice.slice(3))
-        : parseInt(item.price.slice(3));
-      newSubtotal += itemPrice * (quantities[item.id] || 1);
-      newQuantities[item.id] = quantities[item.id] || 1;
-    });
-  
-    setSubtotal(newSubtotal);
-    setTotal(newSubtotal);
-  }, [cart, quantities]);
-  
-  useEffect(() => {
-    setQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      ...cart.reduce((acc: {[key: string]: number }, item) => {
-        acc[item.id] = quantities[item.id] || 1;
-        return acc;
-      }, {}),
-    }));
-  }, [cart]);
 
   return (
     <section className="cart">
@@ -72,18 +40,34 @@ const Cart = () => {
             <li className="ml-[25px]">Subtotal</li>
           </ul>
             {cart.length ? cart.map((item) => {
-              return <CartItem handleQuantityChange={handleQuantityChange } item={item} key={item.id} handleRemoveFromCart={handleRemoveFromCart}/>
+              const {image, title, id, price, promotional, promotionalPrice, quantity} = item 
+              return (
+                <div className="mt-[55px] flex items-center justify-between" key={id}>
+                  <div className='flex items-center justify-between gap-[50px]'>
+                  <img className="w-[111px] h-[90px]" src={image} alt="image" />
+                  <Link to={`/shop/${id}`} className="text-[#9F9F9F]">{title}</Link>
+                  <div className="ml-[60px] text-[#9F9F9F]">{promotional ? promotionalPrice : price}</div>
+                  <div className='ml-[70px] flex items-center py-[15px] px-[8px] border border-[#9F9F9F] rounded-[10px]'>
+                      <button onClick={() => quantity === 1 ? null : changeQuantity(item, quantity - 1)}>-</button>
+                      <div className='mx-[22px]'>{quantity}</div>
+                      <button onClick={() => changeQuantity(item, quantity + 1)}>+</button>
+                  </div>
+                  <div className="ml-[20px]">Rp.{promotional ? parseInt(promotionalPrice.slice(3)) * quantity : parseInt(price.slice(3)) * quantity}</div>
+                  </div>
+                  <TbTrashFilled onClick={() => handleRemoveFromCart(id)} size={28} className='cursor-pointer text-[#B88E2F]'/>
+              </div>
+              )
             }) : <div className='text-center mt-[70px] text-[32px]'>🛒 is empty 🤷‍♀️</div>}
         </div>
         <div className="w-[390px] h-[390px] bg-[#F9F1E7] px-[75px] py-[15px]">
           <div className="text-[32px] font-semibold">Cart Totals</div>
           <div className="flex items-center justify-between mt-[60px]">
             <div>Subtotal</div>
-            <div>{subtotal}</div>
+            <div>Rp. {cart.map(({price, promotional, promotionalPrice, quantity}) => (promotional ? parseInt(promotionalPrice.slice(3)) : parseInt(price.slice(3))) * quantity).reduce((prev, curr) => prev + curr, 0)}</div>
           </div>
           <div className="flex items-center justify-between mt-[30px]">
             <div>Total</div>
-            <div>{total}</div>
+            <div>Rp. {cart.map(({price, promotional, promotionalPrice, quantity}) => (promotional ? parseInt(promotionalPrice.slice(3)) : parseInt(price.slice(3))) * quantity).reduce((prev, curr) => prev + curr, 0)}</div>
           </div>
           <Link to={ROUTES.CHECKOUT} className="block border border-black text-[20px] py-[14px] rounded-[15px] text-center mt-[42px]">Check Out</Link>
         </div>

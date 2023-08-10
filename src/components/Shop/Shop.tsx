@@ -7,16 +7,12 @@ import {GiSettingsKnobs} from 'react-icons/gi'
 import {AiFillCaretDown} from 'react-icons/ai'
 import {BsArrowDownShort, BsArrowUpShort} from 'react-icons/bs'
 import { Product } from '../../data/productTypes'
-import { useAppDispatch} from '../store/slices/hooks'
-import { addToCart, addToFavorite } from '../store/cartSlice'
+import { useAppDispatch} from '../store/hooks'
+import { addToCart, addToFavorite } from '../store/slices/cartSlice'
 import Recommended from '../Recommended/Recommended'
 import ProductList from './ProductList'
 
-type ProductProps = {
-  product: Product;
-};
-
-const Shop: React.FC<ProductProps> = () => {
+const Shop: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(16);
   const [sortedProducts, setSortedProducts] = useState(products.products)

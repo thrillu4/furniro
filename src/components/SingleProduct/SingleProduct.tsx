@@ -2,8 +2,8 @@ import {useState } from 'react';
 import { SlArrowRight } from 'react-icons/sl'
 import { Product } from '../../data/productTypes';
 import RatingStars from './RatingStats';
-import { useAppDispatch } from '../store/slices/hooks';
-import { addToCart } from '../store/cartSlice';
+import { useAppDispatch } from '../store/hooks';
+import { addToCart } from '../store/slices/cartSlice';
 import { AiFillLinkedin, AiFillTwitterCircle } from 'react-icons/ai';
 import {BiLogoFacebookCircle} from 'react-icons/bi'
 import { Link } from 'react-router-dom';
@@ -15,15 +15,14 @@ type SingleProductProps = {
 };
 
 const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
+  const [productQuantity, setProductQuantity] = useState(1);
   const {id, image, price, promotional, promotionalPrice, title, category, rating, reviews, color} = product;
 
   const dispatch = useAppDispatch();
 
   const handleAddToCart = (product: Product) => {
-    dispatch(addToCart(product));
+    dispatch(addToCart({ ...product, quantity: productQuantity }));
   };
-
-  const [productQuantity, setProductQuantity] = useState(1);
 
   const handleQuantityDecrease = () => {
     if (productQuantity > 1) {
