@@ -4,11 +4,13 @@ import {Product} from '../../../data/productTypes';
 type ProductState = {
     cart: Product[];
     favorite: Product[];
+    compare: Product[];
 }
 
 const initialState: ProductState = { 
     cart: [],
     favorite: [],
+    compare: []
 }
 
 const cartSlice = createSlice({
@@ -51,8 +53,24 @@ const cartSlice = createSlice({
     removeFromFavorite: (state, action: PayloadAction<string>) => {
       state.favorite = state.favorite.filter((item) => item.id !== action.payload);
     },
+    addToComparison: (state, action: PayloadAction<Product>) => {
+      const existingIndex = state.compare.findIndex(({ id }) => id === action.payload.id);
+      if (existingIndex !== -1) {
+        // If the product already exists, update its quantity
+        state.compare[existingIndex] = {
+          ...state.compare[existingIndex],
+          quantity: action.payload.quantity || state.compare[existingIndex].quantity + 1,
+        };
+      } else {
+        if (state.compare.length >= 2) {
+          // If there are already two items, replace the first one
+          state.compare.shift();
+        }
+        state.compare.push({ ...action.payload });
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart, removeFromFavorite, addToFavorite } = cartSlice.actions;
+export const { addToCart, removeFromCart, removeFromFavorite, addToFavorite, addToComparison } = cartSlice.actions;
 export default cartSlice.reducer;

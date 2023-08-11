@@ -1,4 +1,4 @@
-export type Blog = {
+export type Blogs = {
     category: string,
     id: string,
     title: string,
@@ -6,4 +6,5 @@ export type Blog = {
     date: string,
     image: string,
     description: string,
+    info: string,
 }

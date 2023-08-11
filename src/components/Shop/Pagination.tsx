@@ -37,12 +37,12 @@ const Pagination: React.FC<PaginationProps> = ({ productsPerPage, setCurrentPage
         <button
             onClick={handlePrevClick}
             disabled={currentPage === 1}
-            className={`mx-2 px-7 py-4 text-xl rounded bg-yellow-50`}
+            className={`mx-2 px-7 py-4 text-xl rounded bg-yellow-50 ${currentPage === 1 && 'opacity-0'}`}
             >
             Prev
         </button>
         {
-            pages.map((page, index) => (
+            pages.length !== 1 && pages.map((page, index) => (
                 <button className={page == currentPage ? "mx-2 px-7 py-4 text-xl rounded bg-orange-400" : "mx-2 px-7 py-4 text-xl rounded"} key={index} onClick={() => setCurrentPage(page)}>{page}</button>
             ))
             
@@ -50,7 +50,7 @@ const Pagination: React.FC<PaginationProps> = ({ productsPerPage, setCurrentPage
         <button
             onClick={handleNextClick}
             disabled={currentPage >= totalPages}
-            className={`mx-2 px-7 py-4 text-xl rounded bg-yellow-50`}
+            className={`mx-2 px-7 py-4 text-xl rounded bg-yellow-50 ${currentPage >= totalPages && 'opacity-0'}`}
             >
             Next
         </button>

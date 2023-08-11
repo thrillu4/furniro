@@ -3,21 +3,34 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { TbUserExclamation } from 'react-icons/tb'
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
+import { MdCompareArrows } from "react-icons/md"
 import { AiOutlineClose, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { IoIosCloseCircle, IoMdHeartDislike } from "react-icons/io";
 import { removeFromCart, removeFromFavorite } from '../store/slices/cartSlice'
+import product from '../../data/products.json';
+import blog from '../../data/blog.json';
 
 const Header = () => {
+  const products = product.products;
+  const blogs = blog.blog
+  const allItems = [...blogs, ...products]
   const [isOpenCart, setOpenCart] = useState(false);
   const [isOpenFavorite, setOpenFavorite] = useState(false);
+  const [isOpenSearch, setOpenSearch] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
   const dispatch = useAppDispatch();
 
   const cart = useAppSelector(cart => cart.cart.cart)
   const favorite = useAppSelector(fav => fav.cart.favorite)
+  const compare = useAppSelector(comp => comp.cart.compare)
 
   const toggleOpenCartMenu = () => {
     setOpenCart(!isOpenCart)
+  }
+
+  const toggleOpenSearchMenu = () => {
+    setOpenSearch(!isOpenSearch)
   }
 
   const toggleOpenFavoriteMenu = () => {
@@ -27,6 +40,8 @@ const Header = () => {
   const closeMenus = () => {
     setOpenCart(false);
     setOpenFavorite(false);
+    setOpenSearch(false)
+    setSearchValue('');
   }
 
   const handleRemoveFromCart = (id: string) => {
@@ -52,11 +67,44 @@ const Header = () => {
         </ul>
         <ul className="icons-list flex items-center gap-12">
           <li><TbUserExclamation size={26}/></li>
-          <li><HiOutlineMagnifyingGlass size={26}/></li>
+          <li onClick={toggleOpenSearchMenu} className='relative cursor-pointer'><HiOutlineMagnifyingGlass size={26}/></li>
           <li onClick={toggleOpenFavoriteMenu} className='relative cursor-pointer'><AiOutlineHeart size={26}/><span className={!favorite.length ? 'none' : "absolute bottom-[-10px] right-[-6px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{favorite.length > 0 && favorite.length}</span></li>
-          <li onClick={toggleOpenCartMenu} className='relative cursor-pointer'><AiOutlineShoppingCart size={26} /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] right-[-10px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span></li>
+          <li onClick={toggleOpenCartMenu} className='relative cursor-pointer'><AiOutlineShoppingCart size={26} /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] left-[-7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span>
+          <span className={!compare.length ? 'none' : "absolute bottom-[-10px] right-[-11px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows/>}</span>
+          </li>
         </ul>
       </nav>
+      {isOpenSearch && 
+        <div className="absolute w-[300px] right-[215px] top-[25px] z-[51]">
+          <input placeholder='search ...' autoFocus className="w-full p-[17px] pr-[45px] rounded-t-[10px] border border-[#9F9F9F] block mx-auto" type="search" name="search" id="search" onChange={(event) => {
+            setSearchValue(event.target.value)
+          }} value={searchValue}/>
+          <div className="bg-white rounded-b-[10px]">
+            {searchValue &&
+            (allItems.some(val => val.title.toLowerCase().includes(searchValue.toLowerCase())) ? 
+            allItems.filter(val => {
+              if(searchValue == '') {
+                return val
+              } else if(val.title.toLowerCase().includes(searchValue.toLowerCase())){
+                return val
+              }
+            }).slice(0,3).map((item) => {
+              const {id, image, category, title} = item;
+              return (
+                <Link to={`/blog/${id}`} className="px-[20px] flex items-center gap-[32px] py-[20px] border-b border-b-[#9F9F9F]" key={id}>
+                  <img className="w-[80px] h-[80px] rounded-[10px]" src={image} alt="image" />
+                  <div>
+                    <div className="text-[12px] mb-[5px]">{title}</div>
+                    <div className="text-[#9F9F9F] text-[12px]">{category}</div>
+                  </div>
+                </Link>
+              )
+          })
+            : <div className='p-[20px]'>No results 🙈</div>)
+            }
+          </div>
+        </div>
+      }
       {isOpenCart && 
       <div className="absolute w-[417px] bg-white right-0 top-0 p-9 z-[51]">
       <div className="flex items-center justify-between">
@@ -91,16 +139,16 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center gap-[14px] mt-[50px]">
-        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.CART}>Cart</Link>
-        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.CHECKOUT}>Checkout</Link>
-        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.COMPARISON}>Comparison</Link>
+        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black relative " onClick={toggleOpenCartMenu} to={ROUTES.CART}>Cart <span className={!cart.length ? 'none' : "absolute bottom-[-10px] right-[4px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span></Link>
+        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.CHECKOUT}>Checkout </Link>
+        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black relative" onClick={toggleOpenCartMenu} to={ROUTES.COMPARISON}>Comparison <span className={!compare.length ? 'none' : "absolute bottom-[-7px] right-[7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows size={22}/>}</span></Link>
       </div>
     </div>
     }
-    {(isOpenFavorite || isOpenCart) && (
+    {(isOpenFavorite || isOpenCart || isOpenSearch) && (
         <div
           className="fixed inset-0 bg-black opacity-40 z-50"
-          style={{ display: isOpenFavorite || isOpenCart ? "block" : "none" }}
+          style={{ display: isOpenFavorite || isOpenCart || isOpenSearch ? "block" : "none" }}
           onClick={closeMenus}
         ></div>
     )}

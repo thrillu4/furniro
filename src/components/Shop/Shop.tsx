@@ -8,7 +8,7 @@ import {AiFillCaretDown} from 'react-icons/ai'
 import {BsArrowDownShort, BsArrowUpShort} from 'react-icons/bs'
 import { Product } from '../../data/productTypes'
 import { useAppDispatch} from '../store/hooks'
-import { addToCart, addToFavorite } from '../store/slices/cartSlice'
+import { addToCart, addToComparison, addToFavorite } from '../store/slices/cartSlice'
 import Recommended from '../Recommended/Recommended'
 import ProductList from './ProductList'
 
@@ -26,6 +26,10 @@ const Shop: React.FC = () => {
 
   const handleAddToCart = (currProduct: Product) => {
     dispatch(addToCart(currProduct));
+  };
+
+  const handleAddToComparing = (currProduct: Product) => {
+    dispatch(addToComparison(currProduct));
   };
 
   const handleAddToFavorite = (currProduct: Product) => {
@@ -76,19 +80,19 @@ const Shop: React.FC = () => {
         <div className="flex items-center">
           <div className='mr-4 text-xl'>Show</div>
           <div className="dropdown">
-      <button className="bg-white flex items-center gap-1 hover:bg-orange-300 text-gray-800 py-3 px-4 rounded">
+      <button className="bg-white flex items-center gap-1 hover:bg-orange-300 text-gray-800 py-3 px-5 rounded">
         {productsPerPage} <AiFillCaretDown/>
       </button>
       <div className="dropdown-content bg-white shadow-lg rounded">
-        <a onClick={() => changeProductsPerPage(16)} href="#" className="block  py-3 px-4 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+        <button onClick={() => changeProductsPerPage(16)} className="flex items-center  py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
         16
-        </a>
-        <a onClick={() => changeProductsPerPage(32)} href="#" className="block  py-3 px-4 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+        </button>
+        <button onClick={() => changeProductsPerPage(32)} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
           32
-        </a>
-        <a onClick={() => changeProductsPerPage(totalProducts)} href="#" className="block  py-3 px-6 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+        </button>
+        <button onClick={() => changeProductsPerPage(totalProducts)} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
           All
-        </a>
+        </button>
       </div>
     </div>
           <div className='ml-7 mr-4 text-xl'>Short by</div>
@@ -97,20 +101,20 @@ const Shop: React.FC = () => {
       Default <AiFillCaretDown/>
       </button>
       <div className="dropdown-content bg-white shadow-lg rounded">
-      <a onClick={() => handleFiltered('def')} href="#" className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+      <button onClick={() => handleFiltered('def')} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
           Default
-        </a>
-        <a onClick={() => handleFiltered('asc')} href="#" className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+        </button>
+        <button onClick={() => handleFiltered('asc')} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
           Price <BsArrowDownShort/>
-        </a>
-        <a onClick={() => handleFiltered('desc')} href="#" className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+        </button>
+        <button onClick={() => handleFiltered('desc')} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
           Price <BsArrowUpShort/>
-        </a>
+        </button>
       </div>
     </div>
         </div>
       </div>
-        <ProductList productsPerPage={productsPerPage} currentPage={currentPage} handleAddToCart={handleAddToCart} handleAddToFavorite={handleAddToFavorite} sortedProducts={sortedProducts}/>
+        <ProductList productsPerPage={productsPerPage} currentPage={currentPage} handleAddToCart={handleAddToCart} handleAddToComparing={handleAddToComparing} handleAddToFavorite={handleAddToFavorite} sortedProducts={sortedProducts}/>
         <Pagination productsPerPage={productsPerPage}
         setCurrentPage={setCurrentPage}
         totalProducts={totalProducts}

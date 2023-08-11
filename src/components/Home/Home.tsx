@@ -33,7 +33,7 @@ const Home = () => {
   return (
     <>
       <div className="promo relative">
-        <img src="images/new-collection.png" alt="collection" />
+        <img className='w-full' src="images/new-collection.png" alt="collection" />
         <div className="arrival absolute top-36 right-14 max-w-2xl ml-auto bg-yellow-50 py-16 px-11">
           <div className="font-semibold">New Arrival</div>
           <h2 className="font-bold text-5xl text-amber-500 mt-1">Discover Our<br/>

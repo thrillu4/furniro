@@ -3,11 +3,12 @@ import { SlArrowRight } from 'react-icons/sl'
 import { Product } from '../../data/productTypes';
 import RatingStars from './RatingStats';
 import { useAppDispatch } from '../store/hooks';
-import { addToCart } from '../store/slices/cartSlice';
+import { addToCart, addToComparison } from '../store/slices/cartSlice';
 import { AiFillLinkedin, AiFillTwitterCircle } from 'react-icons/ai';
 import {BiLogoFacebookCircle} from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 import TabContainer from './TabContainer';
+import { ROUTES } from '../../utils/routes';
 
 
 type SingleProductProps = {
@@ -22,6 +23,10 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
 
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart({ ...product, quantity: productQuantity }));
+  };
+
+  const handleAddToComparing = (currProduct: Product) => {
+    dispatch(addToComparison(currProduct));
   };
 
   const handleQuantityDecrease = () => {
@@ -62,8 +67,8 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
               <div className='mx-[35px]'>{productQuantity}</div>
               <button onClick={handleQuantityIncrease}>+</button>
             </div>
-            <button className='border py-[17px] px-[48px] text-[20px] border-black rounded-[15px]' onClick={() => handleAddToCart(product)}>Add To Cart</button>
-            <button className='border py-[17px] px-[48px] text-[20px] border-black rounded-[15px]'><span>+ </span>Compare</button>
+            <Link to={ROUTES.CART} className='border py-[17px] px-[48px] text-[20px] border-black rounded-[15px]' onClick={() => handleAddToCart(product)}>Buy Now</Link>
+            <button onClick={() => handleAddToComparing(product)} className='border py-[17px] px-[48px] text-[20px] border-black rounded-[15px]'><span>+ </span>Compare</button>
           </div>
           <div className='mt-[100px]'>
             <div className='text-[#9F9F9F] mb-[12px]'>Category <span className='ml-[16px] mr-[12px]'>:</span> {category}</div>

@@ -21,7 +21,7 @@ const AppRoutes = () => {
     setShowSpinner(true);
     const timer = setTimeout(() => {
       setShowSpinner(false);
-    }, 1600);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [location]);
