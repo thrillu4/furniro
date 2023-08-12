@@ -3,7 +3,7 @@ import { ROUTES } from "../../utils/routes"
 
 const Footer = () => {
   return (
-    <footer className="footer flex py-11 justify-evenly ">
+    <footer className="footer flex py-11 justify-evenly md:gap-[70px]">
       <div className="first-colon">
         <div className="text-2xl font-bold mb-12">Furniro.</div>
         <p className="text-gray-400 mb-60">400 University Drive Suite 200 Coral<br/> Gables,<br/>

@@ -9,23 +9,18 @@
     box-sizing: border-box;
 }
 
-.container {
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
 .dropdown {
     position: relative;
   }
   
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 10;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { TbUserExclamation } from 'react-icons/tb'
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
+import { TfiMenu } from 'react-icons/tfi'
 import { MdCompareArrows } from "react-icons/md"
 import { AiOutlineClose, AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai'
 import { useAppDispatch, useAppSelector } from "../store/hooks";
@@ -19,6 +20,8 @@ const Header = () => {
   const [isOpenFavorite, setOpenFavorite] = useState(false);
   const [isOpenSearch, setOpenSearch] = useState(false)
   const [searchValue, setSearchValue] = useState('')
+  const [isOpenHamburger, setOpenHamburger] = useState(false);
+
   const dispatch = useAppDispatch();
 
   const cart = useAppSelector(cart => cart.cart.cart)
@@ -27,14 +30,20 @@ const Header = () => {
 
   const toggleOpenCartMenu = () => {
     setOpenCart(!isOpenCart)
+    if(isOpenHamburger) setOpenHamburger(!isOpenHamburger)
   }
 
   const toggleOpenSearchMenu = () => {
     setOpenSearch(!isOpenSearch)
   }
-
+  
   const toggleOpenFavoriteMenu = () => {
     setOpenFavorite(!isOpenFavorite)
+    if(isOpenHamburger) setOpenHamburger(!isOpenHamburger)
+  }
+
+  const toggleOpenHamburger = () => {
+    setOpenHamburger(!isOpenHamburger)
   }
 
   const closeMenus = () => {
@@ -54,28 +63,48 @@ const Header = () => {
 
   return (
     <>
-      <nav className="relative nav flex justify-between items-center pt-9">
+      <nav className="relative nav flex justify-between items-center pt-3 md:pt-9">
         <Link to={ROUTES.HOME} className="logo-wrap flex items-center cursor-pointer">
-          <img src="/images/main-logo.png" alt="logo" />
-          <div className="name-site text-3xl ml-1 font-bold">Furniro</div>
+          <img className='w-[30px] md:w-full' src="/images/main-logo.png" alt="logo" />
+          <div className="name-site md:text-3xl ml-1 font-bold">Furniro</div>
         </Link>
-        <ul className="page-nav flex items-center gap-20 text-base font-medium">
+        <TfiMenu onClick={toggleOpenHamburger} className='md:hidden'/>
+        {isOpenHamburger && (
+          <div className="fixed z-50 inset-0 bg-black block w-full  p-[10px]">
+            <AiOutlineClose onClick={toggleOpenHamburger} className='w-[25px] h-[25px] text-white ml-auto cursor-pointer'/>
+            <ul className="mt-[20px] text-white flex justify-center items-center gap-[60px]">
+              <li><TbUserExclamation size={23}/></li>
+              <li onClick={toggleOpenSearchMenu} className='relative cursor-pointer'><HiOutlineMagnifyingGlass size={23}/></li>
+              <li onClick={() => setOpenFavorite(true)} className='relative cursor-pointer'><AiOutlineHeart size={23}/><span className={!favorite.length ? 'none' : "absolute bottom-[-10px] right-[-6px] text-white bg-orange-400 rounded-full w-3 h-3 flex items-center justify-center text-xs z-50"}>{favorite.length > 0 && favorite.length}</span></li>
+              <li onClick={() => setOpenCart(true)} className='relative cursor-pointer'><AiOutlineShoppingCart size={23} /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] left-[-7px] text-white bg-orange-400 rounded-full w-3 h-3 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span>
+              <span className={!compare.length ? 'none' : "absolute bottom-[-10px] right-[-11px] text-white bg-orange-400 rounded-full w-3 h-3 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows/>}</span>
+              </li>
+            </ul>
+            <ul className="flex flex-col justify-center items-center text-white gap-[50px] mt-[100px]">
+              <li><Link onClick={toggleOpenHamburger} to={ROUTES.HOME}>Home</Link></li>
+              <li><Link onClick={toggleOpenHamburger} to={ROUTES.SHOP}>Shop</Link></li>
+              <li><Link onClick={toggleOpenHamburger} to={ROUTES.BLOG}>Blog</Link></li>
+              <li><Link onClick={toggleOpenHamburger} to={ROUTES.CONTACT}>Contact</Link></li>
+            </ul>
+          </div>
+        )}
+        <ul className="hidden page-nav md:flex items-center text-[12px] gap-[5px] md:text-[16px] sm:gap[20px] md:gap-10 lg:gap-20 font-medium">
           <li><Link to={ROUTES.HOME}>Home</Link></li>
           <li><Link to={ROUTES.SHOP}>Shop</Link></li>
           <li><Link to={ROUTES.BLOG}>Blog</Link></li>
           <li><Link to={ROUTES.CONTACT}>Contact</Link></li>
         </ul>
-        <ul className="icons-list flex items-center gap-12">
-          <li><TbUserExclamation size={26}/></li>
-          <li onClick={toggleOpenSearchMenu} className='relative cursor-pointer'><HiOutlineMagnifyingGlass size={26}/></li>
-          <li onClick={toggleOpenFavoriteMenu} className='relative cursor-pointer'><AiOutlineHeart size={26}/><span className={!favorite.length ? 'none' : "absolute bottom-[-10px] right-[-6px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{favorite.length > 0 && favorite.length}</span></li>
-          <li onClick={toggleOpenCartMenu} className='relative cursor-pointer'><AiOutlineShoppingCart size={26} /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] left-[-7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span>
+        <ul className="hidden icons-list md:flex items-center sm:gap-[20px] md:gap-8 lg:gap-12">
+          <li><TbUserExclamation className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/></li>
+          <li onClick={toggleOpenSearchMenu} className='relative cursor-pointer'><HiOutlineMagnifyingGlass className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/></li>
+          <li onClick={toggleOpenFavoriteMenu} className='relative cursor-pointer'><AiOutlineHeart className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/><span className={!favorite.length ? 'none' : "absolute bottom-[-10px] right-[-6px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{favorite.length > 0 && favorite.length}</span></li>
+          <li onClick={toggleOpenCartMenu} className='relative cursor-pointer'><AiOutlineShoppingCart className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]' /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] left-[-7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span>
           <span className={!compare.length ? 'none' : "absolute bottom-[-10px] right-[-11px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows/>}</span>
           </li>
         </ul>
       </nav>
       {isOpenSearch && 
-        <div className="absolute w-[300px] right-[215px] top-[25px] z-[51]">
+        <div className="absolute w-full md:w-[300px] left-[33px] md:right-[215px] top-[20px] md:top-[25px] z-[51]">
           <input placeholder='search ...' autoFocus className="w-full p-[17px] pr-[45px] rounded-t-[10px] border border-[#9F9F9F] block mx-auto" type="search" name="search" id="search" onChange={(event) => {
             setSearchValue(event.target.value)
           }} value={searchValue}/>
@@ -106,17 +135,17 @@ const Header = () => {
         </div>
       }
       {isOpenCart && 
-      <div className="absolute w-[417px] bg-white right-0 top-0 p-9 z-[51]">
+      <div className="absolute w-full left-12 md:w-[417px] bg-white right-0 rounded-[10px] top-0 p-4 md:p-9 z-[51]">
       <div className="flex items-center justify-between">
         <div className="text-2xl font-semibold">Shopping Cart</div>
-        <AiOutlineClose onClick={toggleOpenCartMenu} size={25} className='text-[#9F9F9F] cursor-pointer'/>
+        <AiOutlineClose onClick={() => setOpenCart(false)} size={25} className='text-[#9F9F9F] cursor-pointer'/>
       </div>
       <div>
         {cart.length ? cart.map((item) => {
           const {image, title, id, price, promotional, promotionalPrice, quantity} = item
           return (
             <div className="flex items-center justify-between mb-[28px] mt-[75px]" key={id}>
-              <Link className='flex items-center gap-8' to={`/shop/${id}`}>
+              <Link onClick={toggleOpenCartMenu} className='flex items-center gap-8' to={`/shop/${id}`}>
                 <img className="w-[111px] h-[90px] rounded" src={image} alt="image" />
                 <div className="mr-8">
                   <div className="mb-3">{title}</div>
@@ -139,9 +168,9 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center gap-[14px] mt-[50px]">
-        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black relative " onClick={toggleOpenCartMenu} to={ROUTES.CART}>Cart <span className={!cart.length ? 'none' : "absolute bottom-[-10px] right-[4px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span></Link>
-        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.CHECKOUT}>Checkout </Link>
-        <Link className="rounded-[50px] px-[30px] py-[6px] text-xs font-normal border border-black relative" onClick={toggleOpenCartMenu} to={ROUTES.COMPARISON}>Comparison <span className={!compare.length ? 'none' : "absolute bottom-[-7px] right-[7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows size={22}/>}</span></Link>
+        <Link className="rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black relative " onClick={toggleOpenCartMenu} to={ROUTES.CART}>Cart <span className={!cart.length ? 'none' : "absolute bottom-[-10px] right-[4px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span></Link>
+        <Link className="rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.CHECKOUT}>Checkout </Link>
+        <Link className="rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black relative" onClick={toggleOpenCartMenu} to={ROUTES.COMPARISON}>Comparison <span className={!compare.length ? 'none' : "absolute bottom-[-7px] right-[7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows size={22}/>}</span></Link>
       </div>
     </div>
     }
@@ -153,17 +182,17 @@ const Header = () => {
         ></div>
     )}
     {isOpenFavorite &&
-    <div className="absolute w-[417px] bg-white right-0 top-0 p-9 z-[51]">
+    <div className="absolute w-full md:w-[417px] left-12 rounded-[10px] bg-white md:right-0 top-0 p-4 md:p-9 z-[51]">
     <div className="flex items-center justify-between">
       <div className="text-2xl font-semibold">Favorites</div>
-      <AiOutlineClose onClick={toggleOpenFavoriteMenu} size={25} className='text-[#9F9F9F] cursor-pointer'/>
+      <AiOutlineClose onClick={() => setOpenFavorite(false)} size={25} className='text-[#9F9F9F] cursor-pointer'/>
     </div>
     <div>
       {favorite.length ? favorite.map((item) => {
         const {image, title, id, price, promotional, promotionalPrice} = item
         return (
           <div className="flex items-center justify-between mb-[28px] mt-[75px]" key={id}>
-            <Link className='flex items-center gap-8' to={`/shop/${id}`}>
+            <Link onClick={toggleOpenFavoriteMenu} className='flex items-center gap-8' to={`/shop/${id}`}>
               <img className="w-[111px] h-[90px] rounded" src={image} alt="image" />
               <div className="flex items-center gap-5">
                 <div>{title}</div> 
