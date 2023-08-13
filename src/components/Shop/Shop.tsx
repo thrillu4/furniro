@@ -62,40 +62,40 @@ const Shop: React.FC = () => {
 
   return (
     <section className="shop-page">
-      <div className='bg-shop py-28 mt-8'>
-        <h1 className='text-center text-5xl font-semibold'>Shop</h1>
+      <div className='bg-shop py-14 rounded-[10px] md:rounded-none md:py-28 mt-8'>
+        <h1 className='text-center text-2xl md:text-5xl font-semibold'>Shop</h1>
         <div className='flex items-center mt-1 gap-2 justify-center'>
           <div className='font-semibold'>Home</div>
           <MdNavigateNext/>
           <div>Shop</div>
         </div>
       </div>
-      <div className="filter flex items-center justify-evenly gap-96 bg-yellow-50 py-9">
-        <div className='flex items-center'>
-          <GiSettingsKnobs/>
-          <div className=' text-xl ml-3'>Filter</div>
-          <div className="divider border-t bg-gray-300 h-9 w-0.5 mx-9"></div>
-          <div>Showing <span>{productsPerPage * currentPage >= totalProducts ? totalProducts : productsPerPage * currentPage}</span> of <span>{totalProducts}</span> results</div>
+      <div className="filter md:flex md:items-center md:justify-evenly grid grid-cols-2 md:gap-4 lg:gap-96 bg-yellow-50 md:py-9 py-3 px-6">
+        <div className='md:flex md:items-center'>
+          <GiSettingsKnobs className='hidden md:block'/>
+          <div className='lg:text-xl md:ml-3'>Filter</div>
+          <div className="divider hidden md:block border-t bg-gray-300 h-9 w-0.5 mx-9"></div>
+          <div className='md:pt-0 pt-8'>Showing <span>{productsPerPage * currentPage >= totalProducts ? totalProducts : productsPerPage * currentPage}</span> of <span>{totalProducts}</span> results</div>
         </div>
-        <div className="flex items-center">
-          <div className='mr-4 text-xl'>Show</div>
+        <div className="flex items-center flex-col md:flex-row">
+          <div className='mr-4 lg:text-xl'>Show</div>
           <div className="dropdown">
-      <button className="bg-white flex items-center gap-1 hover:bg-orange-300 text-gray-800 py-3 px-5 rounded">
-        {productsPerPage} <AiFillCaretDown/>
-      </button>
-      <div className="dropdown-content bg-white shadow-lg rounded">
-        <button onClick={() => changeProductsPerPage(16)} className="flex items-center  py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
-        16
-        </button>
-        <button onClick={() => changeProductsPerPage(32)} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
-          32
-        </button>
-        <button onClick={() => changeProductsPerPage(totalProducts)} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
-          All
-        </button>
-      </div>
-    </div>
-          <div className='ml-7 mr-4 text-xl'>Short by</div>
+            <button className="bg-white flex items-center gap-1 hover:bg-orange-300 text-gray-800 py-3 px-5 rounded">
+              {productsPerPage} <AiFillCaretDown/>
+            </button>
+            <div className="dropdown-content bg-white shadow-lg rounded">
+              <button onClick={() => changeProductsPerPage(16)} className="flex items-center  py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+              16
+              </button>
+              <button onClick={() => changeProductsPerPage(32)} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+                32
+              </button>
+              <button onClick={() => changeProductsPerPage(totalProducts)} className="flex items-center py-3 px-7 rounded text-center text-gray-800 hover:bg-orange-400 hover:text-white">
+                All
+              </button>
+            </div>
+          </div>
+          <div className='md:ml-7 md:mr-4 lg:text-xl'>Short by</div>
           <div className="dropdown">
       <button className="bg-white flex items-center gap-1 hover:bg-orange-300 text-gray-800 py-3 px-4 rounded">
       Default <AiFillCaretDown/>

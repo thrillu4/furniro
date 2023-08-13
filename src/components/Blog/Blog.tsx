@@ -40,36 +40,36 @@ const Blog = () => {
 
   return (
     <section>
-      <div className='bg-shop pt-16 pb-28 mt-8'>
+      <div className='bg-shop pt-16 md:pt-16 py-14 rounded-[10px] md:rounded-none md:pb-28 mt-8'>
         <img className="block my-0 mx-auto mb-3 " src="images/main-logo.png" alt="logo" />
-        <h1 className='text-center text-5xl font-semibold'>Blog</h1>
+        <h1 className='text-center text-2xl md:text-5xl font-semibold'>Blog</h1>
         <div className='flex items-center mt-1 gap-2 justify-center'>
           <div className='font-semibold'>Home</div>
           <MdNavigateNext/>
           <div>Blog</div>
         </div>
       </div>
-      <div className="pt-[100px] pb-[60px] flex justify-center gap-[30px]">
-        <div className="blog-items w-[817px]">
+      <div className="md:pt-[100px] pb-[60px] flex justify-center flex-col-reverse md:flex-row  md:gap-[30px] gap-[15px]">
+        <div className="blog-items md:w-[817px]">
           {currentPosts.map(item => {
             const {id, author, category, date, description, image, title} = item;
             return (
               <div key={id} className="blog-item">
-                <img className="rounded-[10px] w-full max-h-[500px] object-cover" src={image} alt="image" />
-                <div className="flex items-center gap-[35px] mt-[17px]">
-                  <div className="flex items-center gap-[7px] text-[#9F9F9F]"><FaUser/>{author}</div>
-                  <div className="flex items-center gap-[7px] text-[#9F9F9F]"><MdDateRange/>{date}</div>
-                  <div className="flex items-center gap-[7px] text-[#9F9F9F]"><IoMdPricetag/>{category}</div>
+                <img className="rounded-[10px] w-full md:max-h-[500px] object-cover" src={image} alt="image" />
+                <div className="flex items-center md:gap-[35px] gap-[20px] mt-[17px]">
+                  <div className="flex text-[9px] items-center gap-[7px] text-[#9F9F9F]"><FaUser/>{author}</div>
+                  <div className="flex text-[9px] items-center gap-[7px] text-[#9F9F9F]"><MdDateRange/>{date}</div>
+                  <div className="flex text-[9px] items-center gap-[7px] text-[#9F9F9F]"><IoMdPricetag/>{category}</div>
                 </div>
-                <div className="mt-[15px] text-[30px] font-medium">{title}</div>
-                <p className="mt-[12px] mb-[30px] text-[#9F9F9F]">{description}</p>
-                <Link className="pb-[12px] border-b border-black mb-[54px] inline-block" to={`/blog/${id}`}>Read more</Link>
+                <div className="mt-[15px] md:text-[30px] font-medium">{title}</div>
+                <p className="mt-[12px] text-xs md:mb-[30px] mb-4 text-[#9F9F9F]">{description}</p>
+                <Link className="md:pb-[12px] pb-[5px] md:text-base text-sm border-b border-black mb-[54px] inline-block" to={`/blog/${id}`}>Read more</Link>
               </div>
             )
           })}
         </div>
-        <div className="blog-filter w-[393px]">
-          <div className="w-[311px] mx-auto pt-[22px] pb-[60px]">
+        <div className="blog-filter md:w-[393px]">
+          <div className="w-[311px] mx-auto pt-[22px] md:pb-[60px]">
             <div className="relative">
               <HiMagnifyingGlass size={24} className="absolute top-[18px] right-[15px]"/>
               <input className="w-full p-[17px] pr-[45px] rounded-[10px] border border-[#9F9F9F] block mx-auto" type="search" name="search" id="search" onChange={(event) => {
@@ -94,15 +94,15 @@ const Blog = () => {
                 )
               })} 
             </div>
-            <div className="mt-[43px] text-[24px] font-semibold px-[20px] mb-[33px]">Categories</div>
+            <div className="mt-[43px] text-[24px] font-semibold px-[20px] md:mb-[33px] mb-[15px]">Categories</div>
             {categories.map(category => (
-              <div onClick={() => handleCategoryChange(category)} className={`${activeCategory === category && 'text-black'} px-[20px] flex mb-[40px] items-center justify-between  cursor-pointer text-[#9F9F9F]`} key={category}>
+              <div onClick={() => handleCategoryChange(category)} className={`${activeCategory === category && 'text-black'} px-[20px] flex md:mb-[40px] mb-[20px] items-center justify-between  cursor-pointer text-[#9F9F9F]`} key={category}>
                 <div >{category.charAt(0).toUpperCase() + category.slice(1)}</div>
                 <div>{categoryCount[category]}</div>
               </div>
             ))}
           </div>
-          <div className="w-[311px] mx-auto mt-[40px] py-[16px]">
+          <div className=" hidden md:block w-[311px] mx-auto mt-[40px] py-[16px]">
             <div className="mt-[43px] text-[24px] font-semibold px-[20px] mb-[33px]">Recent Posts</div>
             <div className="flex flex-col gap-[40px]">
               {posts.slice(-5).reverse().map(item => {

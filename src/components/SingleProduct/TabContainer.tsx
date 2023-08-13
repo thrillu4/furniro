@@ -24,7 +24,7 @@ const TabContainer: React.FC<TabContainerProps> = ({reviews}) => {
   
     return (
       <div className="tab-container">
-        <div className={`tab-list flex items-center justify-center gap-[52px] text-[24px] text-[#9F9F9F]`}>
+        <div className={`tab-list flex items-center justify-center md:gap-[52px] gap-5 text-[16px] md:text-[24px] text-[#9F9F9F]`}>
           {tabs.map((tab, index) => (
             <button
               key={index}

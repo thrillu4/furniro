@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
 import { TbUserExclamation } from 'react-icons/tb'
@@ -27,6 +27,20 @@ const Header = () => {
   const cart = useAppSelector(cart => cart.cart.cart)
   const favorite = useAppSelector(fav => fav.cart.favorite)
   const compare = useAppSelector(comp => comp.cart.compare)
+
+  useEffect(() => {
+    if (isOpenHamburger) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'visible'
+    }
+  }, [isOpenHamburger])
+
+  useEffect(() => {
+    if (isOpenCart || isOpenSearch || isOpenFavorite) {
+      document.body.style.overflow = 'visible'
+    }
+  }, [isOpenCart, isOpenFavorite, isOpenSearch])
 
   const toggleOpenCartMenu = () => {
     setOpenCart(!isOpenCart)
@@ -63,12 +77,12 @@ const Header = () => {
 
   return (
     <>
-      <nav className="relative nav flex justify-between items-center pt-3 md:pt-9">
+      <nav className="relative nav flex justify-between items-center px-2 pt-3 md:pt-9">
         <Link to={ROUTES.HOME} className="logo-wrap flex items-center cursor-pointer">
           <img className='w-[30px] md:w-full' src="/images/main-logo.png" alt="logo" />
           <div className="name-site md:text-3xl ml-1 font-bold">Furniro</div>
         </Link>
-        <TfiMenu onClick={toggleOpenHamburger} className='md:hidden'/>
+        <TfiMenu onClick={toggleOpenHamburger} className='md:hidden w-[22px] h-[22px]'/>
         {isOpenHamburger && (
           <div className="fixed z-50 inset-0 bg-black block w-full  p-[10px]">
             <AiOutlineClose onClick={toggleOpenHamburger} className='w-[25px] h-[25px] text-white ml-auto cursor-pointer'/>
@@ -104,7 +118,7 @@ const Header = () => {
         </ul>
       </nav>
       {isOpenSearch && 
-        <div className="absolute w-full md:w-[300px] left-[33px] md:right-[215px] top-[20px] md:top-[25px] z-[51]">
+        <div className="absolute w-full md:w-[300px] right-0 md:right-[215px] top-[20px] md:top-[25px] z-[51]">
           <input placeholder='search ...' autoFocus className="w-full p-[17px] pr-[45px] rounded-t-[10px] border border-[#9F9F9F] block mx-auto" type="search" name="search" id="search" onChange={(event) => {
             setSearchValue(event.target.value)
           }} value={searchValue}/>
@@ -135,7 +149,7 @@ const Header = () => {
         </div>
       }
       {isOpenCart && 
-      <div className="absolute w-full left-12 md:w-[417px] bg-white right-0 rounded-[10px] top-0 p-4 md:p-9 z-[51]">
+      <div className="absolute w-full md:w-[417px] bg-white right-0 rounded-[10px] top-2 p-4 md:p-9 z-[51]">
       <div className="flex items-center justify-between">
         <div className="text-2xl font-semibold">Shopping Cart</div>
         <AiOutlineClose onClick={() => setOpenCart(false)} size={25} className='text-[#9F9F9F] cursor-pointer'/>
@@ -182,7 +196,7 @@ const Header = () => {
         ></div>
     )}
     {isOpenFavorite &&
-    <div className="absolute w-full md:w-[417px] left-12 rounded-[10px] bg-white md:right-0 top-0 p-4 md:p-9 z-[51]">
+    <div className="absolute w-full md:w-[417px] right-0 rounded-[10px] bg-white md:right-0 top-2 p-4 md:p-9 z-[51]">
     <div className="flex items-center justify-between">
       <div className="text-2xl font-semibold">Favorites</div>
       <AiOutlineClose onClick={() => setOpenFavorite(false)} size={25} className='text-[#9F9F9F] cursor-pointer'/>
@@ -194,7 +208,7 @@ const Header = () => {
           <div className="flex items-center justify-between mb-[28px] mt-[75px]" key={id}>
             <Link onClick={toggleOpenFavoriteMenu} className='flex items-center gap-8' to={`/shop/${id}`}>
               <img className="w-[111px] h-[90px] rounded" src={image} alt="image" />
-              <div className="flex items-center gap-5">
+              <div className="md:flex md:items-center gap-5">
                 <div>{title}</div> 
                 <div className="text-[#B88E2F]">{promotional ? promotionalPrice : price}</div>
               </div>

@@ -8,7 +8,7 @@ const SingleProductPage: React.FC = () => {
   const product = products.products.find((product) => product.id === productId);
 
   if (!product) {
-    return <div className='flex flex-col items-center justify-center h-screen bg-white text-[40px]'>❌ Product not found... 
+    return <div className='flex flex-col items-center justify-center h-screen bg-white md:text-[40px]'>❌ Product not found... 
       <div>Something getting wrong 🤷‍♂️</div>
       <Link className='border-2 mt-[20px] p-[20px] border-black rounded-[15px]' to={ROUTES.SHOP}>Back To Shop 🚀</Link>
     </div>;

@@ -22,27 +22,27 @@ const Checkout = () => {
 
   return (
     <section className="check-out">
-      <div className='bg-shop pt-16 pb-28 mt-8'>
+      <div className='bg-shop pt-16 md:pt-16 py-14 rounded-[10px] md:rounded-none md:pb-28 mt-8'>
         <img className="block my-0 mx-auto mb-3 " src="images/main-logo.png" alt="logo" />
-        <h1 className='text-center text-5xl font-semibold'>Checkout</h1>
+        <h1 className='text-center text-2xl md:text-5xl font-semibold'>Checkout</h1>
         <div className='flex items-center mt-1 gap-2 justify-center'>
           <div className='font-semibold'>Home</div>
           <MdNavigateNext/>
           <div>Checkout</div>
         </div>
       </div>
-      <div className="mt-16">
-        <form method="post" className="flex justify-evenly gap-7 ">
-          <div className="inputs w-[608px] px-14 flex flex-col">
-            <div className="font-semibold text-4xl mb-9">Billing details</div>
-            <div className="flex gap-8 mb-9">
+      <div className="md:mt-16">
+        <form method="post" className="flex justify-evenly xl:flex-row flex-col md:gap-7 ">
+          <div className="inputs xl:w-[608px] md:px-14 flex flex-col">
+            <div className="font-semibold text-2xl md:text-4xl mb-9 mt-[30px] md:mt-0">Billing details</div>
+            <div className="flex flex-col md:flex-row gap-8 mb-9">
               <div className="flex flex-col">
                 <label className="font-semibold mb-6" htmlFor="firstName">First Name</label>
-                <input className="border rounded-xl border-gray-500 py-6 " type="text" name="firstName" id="firstName" required/>
+                <input className="border rounded-xl border-gray-500 py-6 px-7" type="text" name="firstName" id="firstName" required/>
               </div>
               <div className="flex flex-col">
                 <label className="font-semibold mb-6" htmlFor="lastName">Last Name</label>
-                <input className=" border rounded-xl border-gray-500 py-6 " type="text" name="lastName" id="lastName" required/>
+                <input className=" border rounded-xl border-gray-500 py-6 px-7" type="text" name="lastName" id="lastName" required/>
               </div>
             </div>
             <label htmlFor='company' className="font-semibold mb-6">Company Name (Optional)</label>
@@ -63,7 +63,7 @@ const Checkout = () => {
             <input className="mb-9 border rounded-xl border-gray-500 py-6 px-7" type="text" name="email-add" id="email-add"/>
             <textarea className="mb-14 resize-none py-6 px-7 border rounded-xl border-gray-500" name="information" id="information" placeholder="Additional information"/>
             </div>
-          <div className="form-prices w-[608px] pt-[87px] px-10">
+          <div className="form-prices xl:w-[608px] xl:pt-[87px] md:px-10">
             <div className="flex justify-between items-center text-2xl mb-3">
               <div>Product</div>
               <div>Subtotal</div>
@@ -101,7 +101,7 @@ const Checkout = () => {
               <label htmlFor="Delivery">Cash On Delivery</label>
             </div>
             <p className="mb-10">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <Link to={ROUTES.PrivacyPolicies} className="font-bold">privacy policy</Link>.</p>
-            <button type="submit" className="block mx-auto text-xl rounded-[15px] border border-black py-[17px] px-[102px]">Place order</button>
+            <button type="submit" className="block mx-auto text-xl rounded-[15px] border border-black py-[17px] px-[50px] md:px-[102px]">Place order</button>
           </div>
         </form>
       </div>
