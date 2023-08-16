@@ -11,6 +11,9 @@ import { useAppDispatch} from '../store/hooks'
 import { addToCart, addToComparison, addToFavorite } from '../store/slices/cartSlice'
 import Recommended from '../Recommended/Recommended'
 import ProductList from './ProductList'
+import { motion } from 'framer-motion';
+import { animation } from '../../utils/animation'
+
 
 const Shop: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,15 +64,18 @@ const Shop: React.FC = () => {
   }
 
   return (
-    <section className="shop-page">
-      <div className='bg-shop py-14 rounded-[10px] md:rounded-none md:py-28 mt-8'>
+    <motion.section initial='hidden'
+    whileInView='visible' className="shop-page">
+      <motion.div initial={{opacity: 0 }} animate={{opacity: 1, transition: {duration: .5}}} className='bg-shop py-14 rounded-[10px] md:rounded-none md:py-28 mt-8'>
         <h1 className='text-center text-2xl md:text-5xl font-semibold'>Shop</h1>
         <div className='flex items-center mt-1 gap-2 justify-center'>
-          <div className='font-semibold'>Home</div>
-          <MdNavigateNext/>
-          <div>Shop</div>
+          <motion.div variants={animation} className='font-semibold'>Home</motion.div>
+          <motion.div variants={animation} custom={0.3}>
+            <MdNavigateNext/>
+          </motion.div>
+          <motion.div variants={animation} custom={0.4} >Shop</motion.div>
         </div>
-      </div>
+      </motion.div>
       <div className="filter md:flex md:items-center md:justify-evenly grid grid-cols-2 md:gap-4 lg:gap-96 bg-yellow-50 md:py-9 py-3 px-6">
         <div className='md:flex md:items-center'>
           <GiSettingsKnobs className='hidden md:block'/>
@@ -122,7 +128,7 @@ const Shop: React.FC = () => {
         totalPages={totalPages}
         />
         <Recommended/>
-    </section>
+    </motion.section>
   )
 }
 

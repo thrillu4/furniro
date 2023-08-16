@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/routes";
-import { TbUserExclamation } from 'react-icons/tb'
 import { HiOutlineMagnifyingGlass } from 'react-icons/hi2'
 import { TfiMenu } from 'react-icons/tfi'
 import { MdCompareArrows } from "react-icons/md"
@@ -11,6 +10,8 @@ import { IoIosCloseCircle, IoMdHeartDislike } from "react-icons/io";
 import { removeFromCart, removeFromFavorite } from '../store/slices/cartSlice'
 import product from '../../data/products.json';
 import blog from '../../data/blog.json';
+import { motion } from 'framer-motion';
+import { animation } from "../../utils/animation";
 
 const Header = () => {
   const products = product.products;
@@ -87,7 +88,6 @@ const Header = () => {
           <div className="fixed z-50 inset-0 bg-black block w-full  p-[10px]">
             <AiOutlineClose onClick={toggleOpenHamburger} className='w-[25px] h-[25px] text-white ml-auto cursor-pointer'/>
             <ul className="mt-[20px] text-white flex justify-center items-center gap-[60px]">
-              <li><TbUserExclamation size={23}/></li>
               <li onClick={toggleOpenSearchMenu} className='relative cursor-pointer'><HiOutlineMagnifyingGlass size={23}/></li>
               <li onClick={() => setOpenFavorite(true)} className='relative cursor-pointer'><AiOutlineHeart size={23}/><span className={!favorite.length ? 'none' : "absolute bottom-[-10px] right-[-6px] text-white bg-orange-400 rounded-full w-3 h-3 flex items-center justify-center text-xs z-50"}>{favorite.length > 0 && favorite.length}</span></li>
               <li onClick={() => setOpenCart(true)} className='relative cursor-pointer'><AiOutlineShoppingCart size={23} /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] left-[-7px] text-white bg-orange-400 rounded-full w-3 h-3 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span>
@@ -103,22 +103,22 @@ const Header = () => {
           </div>
         )}
         <ul className="hidden page-nav md:flex items-center text-[12px] gap-[5px] md:text-[16px] sm:gap[20px] md:gap-10 lg:gap-20 font-medium">
-          <li><Link to={ROUTES.HOME}>Home</Link></li>
-          <li><Link to={ROUTES.SHOP}>Shop</Link></li>
-          <li><Link to={ROUTES.BLOG}>Blog</Link></li>
-          <li><Link to={ROUTES.CONTACT}>Contact</Link></li>
+          <li className='hover:scale-110 duration-300'><Link to={ROUTES.HOME}>Home</Link></li>
+          <li className='hover:scale-110 duration-300'><Link to={ROUTES.SHOP}>Shop</Link></li>
+          <li className='hover:scale-110 duration-300'><Link to={ROUTES.BLOG}>Blog</Link></li>
+          <li className='hover:scale-110 duration-300'><Link to={ROUTES.CONTACT}>Contact</Link></li>
         </ul>
         <ul className="hidden icons-list md:flex items-center sm:gap-[20px] md:gap-8 lg:gap-12">
-          <li><TbUserExclamation className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/></li>
-          <li onClick={toggleOpenSearchMenu} className='relative cursor-pointer'><HiOutlineMagnifyingGlass className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/></li>
-          <li onClick={toggleOpenFavoriteMenu} className='relative cursor-pointer'><AiOutlineHeart className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/><span className={!favorite.length ? 'none' : "absolute bottom-[-10px] right-[-6px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{favorite.length > 0 && favorite.length}</span></li>
-          <li onClick={toggleOpenCartMenu} className='relative cursor-pointer'><AiOutlineShoppingCart className='md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]' /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] left-[-7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span>
+          <li onClick={toggleOpenSearchMenu} className='relative cursor-pointer'><HiOutlineMagnifyingGlass className='hover:scale-110 duration-300 md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/></li>
+          <li onClick={toggleOpenFavoriteMenu} className='relative cursor-pointer'><AiOutlineHeart className='hover:scale-110 duration-300 md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]'/><span className={!favorite.length ? 'none' : "absolute bottom-[-10px] right-[-6px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{favorite.length > 0 && favorite.length}</span></li>
+          <li onClick={toggleOpenCartMenu} className='relative cursor-pointer'><AiOutlineShoppingCart className='hover:scale-110 duration-300 md:w-[23px] md:h-[23px] xl:w-[26px] xl:h-[26px]' /><span className={!cart.length ? 'none' : "absolute bottom-[-10px] left-[-7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span>
           <span className={!compare.length ? 'none' : "absolute bottom-[-10px] right-[-11px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows/>}</span>
           </li>
         </ul>
       </nav>
       {isOpenSearch && 
-        <div className="absolute w-full md:w-[300px] right-0 md:right-[215px] top-[20px] md:top-[25px] z-[51]">
+        <motion.div initial='hidden'
+        whileInView='visible'variants={animation} className="absolute w-full md:w-[300px] right-0 md:right-[215px] top-[20px] md:top-[25px] z-[51]">
           <input placeholder='search ...' autoFocus className="w-full p-[17px] pr-[45px] rounded-t-[10px] border border-[#9F9F9F] block mx-auto" type="search" name="search" id="search" onChange={(event) => {
             setSearchValue(event.target.value)
           }} value={searchValue}/>
@@ -134,7 +134,7 @@ const Header = () => {
             }).slice(0,3).map((item) => {
               const {id, image, category, title} = item;
               return (
-                <Link to={`/blog/${id}`} className="px-[20px] flex items-center gap-[32px] py-[20px] border-b border-b-[#9F9F9F]" key={id}>
+                <Link to={`/blog/${id}`} onClick={toggleOpenSearchMenu} className="px-[20px] flex items-center gap-[32px] py-[20px] border-b border-b-[#9F9F9F]" key={id}>
                   <img className="w-[80px] h-[80px] rounded-[10px]" src={image} alt="image" />
                   <div>
                     <div className="text-[12px] mb-[5px]">{title}</div>
@@ -146,10 +146,11 @@ const Header = () => {
             : <div className='p-[20px]'>No results 🙈</div>)
             }
           </div>
-        </div>
+        </motion.div>
       }
       {isOpenCart && 
-      <div className="absolute w-full md:w-[417px] bg-white right-0 rounded-[10px] top-2 p-4 md:p-9 z-[51]">
+      <motion.div initial={{opacity: 0, y: -100}}
+      whileInView='visible' animate={{opacity: 1, y: 0, transition: {duration: 0.3}}} className="absolute w-full md:w-[417px] bg-white right-0 rounded-[10px] top-2 p-4 md:p-9 z-[51]">
       <div className="flex items-center justify-between">
         <div className="text-2xl font-semibold">Shopping Cart</div>
         <AiOutlineClose onClick={() => setOpenCart(false)} size={25} className='text-[#9F9F9F] cursor-pointer'/>
@@ -159,7 +160,7 @@ const Header = () => {
           const {image, title, id, price, promotional, promotionalPrice, quantity} = item
           return (
             <div className="flex items-center justify-between mb-[28px] mt-[75px]" key={id}>
-              <Link onClick={toggleOpenCartMenu} className='flex items-center gap-8' to={`/shop/${id}`}>
+              <Link onClick={toggleOpenCartMenu} className='hover:scale-110 duration-300 flex items-center gap-8' to={`/shop/${id}`}>
                 <img className="w-[111px] h-[90px] rounded" src={image} alt="image" />
                 <div className="mr-8">
                   <div className="mb-3">{title}</div>
@@ -170,7 +171,7 @@ const Header = () => {
                   </div>
                 </div>
               </Link>
-              <IoIosCloseCircle onClick={() => handleRemoveFromCart(id)} size={20} className='cursor-pointer text-[#9F9F9F]'/>
+              <IoIosCloseCircle onClick={() => handleRemoveFromCart(id)} size={20} className='hover:scale-125 duration-300 cursor-pointer text-[#9F9F9F]'/>
             </div>
           )
         }) : <div className='my-6'>🛒 is empty 🤷‍♀️</div>}
@@ -182,21 +183,22 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center gap-[14px] mt-[50px]">
-        <Link className="rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black relative " onClick={toggleOpenCartMenu} to={ROUTES.CART}>Cart <span className={!cart.length ? 'none' : "absolute bottom-[-10px] right-[4px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span></Link>
-        <Link className="rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.CHECKOUT}>Checkout </Link>
-        <Link className="rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black relative" onClick={toggleOpenCartMenu} to={ROUTES.COMPARISON}>Comparison <span className={!compare.length ? 'none' : "absolute bottom-[-7px] right-[7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows size={22}/>}</span></Link>
+        <Link className="hover:scale-110 duration-300 rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black relative " onClick={toggleOpenCartMenu} to={ROUTES.CART}>Cart <span className={!cart.length ? 'none' : "absolute bottom-[-10px] right-[4px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{cart.length > 0 && cart.length}</span></Link>
+        <Link className="hover:scale-110 duration-300 rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black " onClick={toggleOpenCartMenu} to={ROUTES.CHECKOUT}>Checkout </Link>
+        <Link className="hover:scale-110 duration-300 rounded-[50px] px-[15px] md:px-[30px] py-[6px] text-xs font-normal border border-black relative" onClick={toggleOpenCartMenu} to={ROUTES.COMPARISON}>Comparison <span className={!compare.length ? 'none' : "absolute bottom-[-7px] right-[7px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{compare.length > 0 && <MdCompareArrows size={22}/>}</span></Link>
       </div>
-    </div>
+    </motion.div>
     }
     {(isOpenFavorite || isOpenCart || isOpenSearch) && (
-        <div
+        <div 
           className="fixed inset-0 bg-black opacity-40 z-50"
           style={{ display: isOpenFavorite || isOpenCart || isOpenSearch ? "block" : "none" }}
           onClick={closeMenus}
         ></div>
     )}
     {isOpenFavorite &&
-    <div className="absolute w-full md:w-[417px] right-0 rounded-[10px] bg-white md:right-0 top-2 p-4 md:p-9 z-[51]">
+    <motion.div initial={{opacity: 0, y: -100}}
+    whileInView='visible' animate={{opacity: 1, y: 0, transition: {duration: 0.3}}}  className="absolute w-full md:w-[417px] right-0 rounded-[10px] bg-white md:right-0 top-2 p-4 md:p-9 z-[51]">
     <div className="flex items-center justify-between">
       <div className="text-2xl font-semibold">Favorites</div>
       <AiOutlineClose onClick={() => setOpenFavorite(false)} size={25} className='text-[#9F9F9F] cursor-pointer'/>
@@ -206,19 +208,19 @@ const Header = () => {
         const {image, title, id, price, promotional, promotionalPrice} = item
         return (
           <div className="flex items-center justify-between mb-[28px] mt-[75px]" key={id}>
-            <Link onClick={toggleOpenFavoriteMenu} className='flex items-center gap-8' to={`/shop/${id}`}>
+            <Link onClick={toggleOpenFavoriteMenu} className='hover:scale-110 duration-300 flex items-center gap-8' to={`/shop/${id}`}>
               <img className="w-[111px] h-[90px] rounded" src={image} alt="image" />
               <div className="md:flex md:items-center gap-5">
                 <div>{title}</div> 
                 <div className="text-[#B88E2F]">{promotional ? promotionalPrice : price}</div>
               </div>
             </Link>
-            <IoMdHeartDislike onClick={() => handleRemoveFromFavorite(id)} size={20} className='cursor-pointer text-[#9F9F9F]'/>
+            <IoMdHeartDislike onClick={() => handleRemoveFromFavorite(id)} size={20} className='hover:scale-110 duration-300 cursor-pointer text-[#9F9F9F]'/>
           </div>
         )
       }) : <div className='my-6'>💖 is empty 🤷‍♀️</div>}
     </div>
-  </div>
+  </motion.div>
   }
     </>
   )

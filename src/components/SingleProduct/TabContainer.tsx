@@ -28,7 +28,7 @@ const TabContainer: React.FC<TabContainerProps> = ({reviews}) => {
           {tabs.map((tab, index) => (
             <button
               key={index}
-              className={index === activeTab ? 'active-tab text-black font-medium' : 'tab'}
+              className={index === activeTab ? 'active-tab text-black font-medium hover:scale-105 transition-all duration-300' : 'tab hover:scale-105 transition-all duration-300'}
               onClick={() => handleTabClick(index)}
             >
               {tab.label}

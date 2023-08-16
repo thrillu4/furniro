@@ -1,11 +1,14 @@
+import { motion } from "framer-motion"
 import { GrTrophy } from "react-icons/gr"
 import { IoMdCheckmarkCircleOutline } from "react-icons/io"
 import { MdOutlineSupportAgent } from "react-icons/md"
 import { TbTruckDelivery } from "react-icons/tb"
+import { animation } from "../../utils/animation"
+
 
 const Recommended = () => {
   return (
-    <div className='md:flex md:gap-0 gap-3 md:items-center md:justify-between grid grid-cols-2 py-5 lg:py-[100px] mt-[35px] xl:mt-24 bg-[#FAF3EA] md:px-4 lg:px-10 px-5'>
+    <motion.div initial="hidden" whileInView='visible' variants={animation} custom={2} viewport={{amount: 0.3}} className='md:flex md:gap-0 gap-3 md:items-center md:justify-between grid grid-cols-2 py-5 lg:py-[100px] mt-[35px] xl:mt-24 bg-[#FAF3EA] md:px-4 lg:px-10 px-5'>
           <div className='flex items-center gap-3'>
             <GrTrophy size='60'/>
             <div>
@@ -34,7 +37,7 @@ const Recommended = () => {
               <div className='md:text-base lg:text-xl text-[10px] font-medium text-gray-400'>Dedicated support</div>
             </div>
           </div>
-        </div>
+        </motion.div>
   )
 }
 

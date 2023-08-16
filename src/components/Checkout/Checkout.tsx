@@ -4,6 +4,8 @@ import Recommended from "../Recommended/Recommended";
 import { ROUTES } from "../../utils/routes";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../store/hooks";
+import { motion } from 'framer-motion';
+import { animation } from "../../utils/animation";
 
 const Checkout = () => {
   const [transferPayment, setTransferPayment] = useState(true);
@@ -22,18 +24,21 @@ const Checkout = () => {
 
   return (
     <section className="check-out">
-      <div className='bg-shop pt-16 md:pt-16 py-14 rounded-[10px] md:rounded-none md:pb-28 mt-8'>
-        <img className="block my-0 mx-auto mb-3 " src="images/main-logo.png" alt="logo" />
+      <motion.div initial={{opacity: 0 }} animate={{opacity: 1, transition: {duration: .5}}} className='bg-shop pt-16 md:pt-16 py-14 rounded-[10px] md:rounded-none md:pb-28 mt-8'>
+        <motion.img initial={{y: -100}} animate={{y: 0, transition: {duration: .5}}} className="block my-0 mx-auto mb-3 " src="images/main-logo.png" alt="logo" />
         <h1 className='text-center text-2xl md:text-5xl font-semibold'>Checkout</h1>
-        <div className='flex items-center mt-1 gap-2 justify-center'>
-          <div className='font-semibold'>Home</div>
-          <MdNavigateNext/>
-          <div>Checkout</div>
-        </div>
-      </div>
+        <motion.div initial='hidden'
+        whileInView='visible' className='flex items-center mt-1 gap-2 justify-center'>
+          <motion.div variants={animation} className='font-semibold'>Home</motion.div>
+          <motion.div variants={animation} custom={0.3}>
+            <MdNavigateNext/>
+          </motion.div>
+          <motion.div variants={animation} custom={0.4}>Checkout</motion.div>
+        </motion.div>
+      </motion.div>
       <div className="md:mt-16">
-        <form method="post" className="flex justify-evenly xl:flex-row flex-col md:gap-7 ">
-          <div className="inputs xl:w-[608px] md:px-14 flex flex-col">
+        <motion.form initial='hidden' whileInView='visible' viewport={{amount: 0.2}} method="post" className="flex justify-evenly xl:flex-row flex-col md:gap-7 ">
+          <motion.div variants={animation} animate={{x: 100}} className="inputs xl:w-[608px] md:px-14 flex flex-col">
             <div className="font-semibold text-2xl md:text-4xl mb-9 mt-[30px] md:mt-0">Billing details</div>
             <div className="flex flex-col md:flex-row gap-8 mb-9">
               <div className="flex flex-col">
@@ -62,8 +67,8 @@ const Checkout = () => {
             <label htmlFor='email-add' className="font-semibold mb-6">Email address</label>
             <input className="mb-9 border rounded-xl border-gray-500 py-6 px-7" type="text" name="email-add" id="email-add"/>
             <textarea className="mb-14 resize-none py-6 px-7 border rounded-xl border-gray-500" name="information" id="information" placeholder="Additional information"/>
-            </div>
-          <div className="form-prices xl:w-[608px] xl:pt-[87px] md:px-10">
+            </motion.div>
+          <motion.div variants={animation} className="form-prices xl:w-[608px] xl:pt-[87px] md:px-10">
             <div className="flex justify-between items-center text-2xl mb-3">
               <div>Product</div>
               <div>Subtotal</div>
@@ -102,8 +107,8 @@ const Checkout = () => {
             </div>
             <p className="mb-10">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <Link to={ROUTES.PrivacyPolicies} className="font-bold">privacy policy</Link>.</p>
             <button type="submit" className="block mx-auto text-xl rounded-[15px] border border-black py-[17px] px-[50px] md:px-[102px]">Place order</button>
-          </div>
-        </form>
+          </motion.div>
+        </motion.form>
       </div>
       <Recommended/>
     </section>
