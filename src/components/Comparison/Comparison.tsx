@@ -37,7 +37,7 @@ const Comparison = () => {
           Go to Product <br />
           page for more <br />
           Products <br />
-          <Link className="inline-block md:text-[20px] text-[16px] text-[#727272] border-b border-[#727272] pb-1" to={ROUTES.SHOP}>View More</Link>
+          <Link className="hover:scale-110 duration-300 inline-block md:text-[20px] text-[16px] text-[#727272] border-b border-[#727272] pb-1" to={ROUTES.SHOP}>View More</Link>
         </motion.div>
         {comparingItems.length ? <div className="flex xl:gap-[45px] md:justify-normal justify-center gap-[10px]">
           {comparingItems.map(item => {
@@ -64,7 +64,7 @@ const Comparison = () => {
                     <span className="font-semibold">Discount</span> {percent}
                   </div>}
                 </div>
-                <button onClick={() => handleAddToCart(item)} className="border border-[#B88E2F] bg-[#B88E2F] py-[5px] md:py-[17px] text-[12px] md:text-[20px] text-white block mx-auto px-[10px] md:px-[48px]">Add To Cart</button>
+                <button onClick={() => handleAddToCart(item)} className="hover:text-[#B88E2F] hover:bg-white duration-300 border border-[#B88E2F] bg-[#B88E2F] py-[5px] md:py-[17px] text-[12px] md:text-[20px] text-white block mx-auto px-[10px] md:px-[48px]">Add To Cart</button>
               </motion.div>
             )
           })}
@@ -74,7 +74,7 @@ const Comparison = () => {
           Go to your cart<br />
           for buy it<br />
           now <br />
-          <Link className="inline-block md:text-[20px] text-[16px] text-[#727272] border-b border-[#727272] pb-1" to={ROUTES.CART}>Open Cart</Link>
+          <Link className="hover:scale-110 duration-300 inline-block md:text-[20px] text-[16px] text-[#727272] border-b border-[#727272] pb-1" to={ROUTES.CART}>Open Cart</Link>
         </motion.div>
       </motion.form>
       <Recommended/>

@@ -98,7 +98,7 @@ const Home = () => {
           <h2 className='font-bold md:text-xl lg:text-4xl'>50+ Beautiful rooms<br />
           inspiration</h2>
           <div className='font-medium  text-sm md:text-[12px] lg:text-base mt-2 text-gray-500'>Our designer already made a lot of beautiful<br /> prototipe of rooms that inspire you</div>
-          <Link to={ROUTES.BLOG} className='block w-[150px] md:w-[176px] text-xs font-semibold mt-5 md:mt-9 py-3 text-center text-white bg-orange-400 border-orange-400 border hover:text-orange-400 hover:bg-white transition-all duration-300'>Explore More</Link>
+          <Link to={ROUTES.BLOG} className='block w-[150px] md:w-[176px] text-xs xl:text-base font-semibold mt-5 md:mt-9 py-3 text-center text-white bg-orange-400 border-orange-400 border hover:text-orange-400 hover:bg-white transition-all duration-300'>Explore More</Link>
         </div>
       <Swiper
         effect={'coverflow'}

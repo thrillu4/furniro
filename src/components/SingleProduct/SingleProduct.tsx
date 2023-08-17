@@ -11,6 +11,7 @@ import TabContainer from './TabContainer';
 import { ROUTES } from '../../utils/routes';
 import { motion } from 'framer-motion';
 import { animation } from '../../utils/animation';
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share';
 
 type SingleProductProps = {
   product: Product;
@@ -19,6 +20,8 @@ type SingleProductProps = {
 const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
   const [productQuantity, setProductQuantity] = useState(1);
   const {id, image, price, promotional, promotionalPrice, title, category, rating, reviews, color} = product;
+
+  const url = window.location.href
 
   const dispatch = useAppDispatch();
 
@@ -75,7 +78,17 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
             <div className='text-[#9F9F9F] mb-[12px]'>Category <span className='ml-[16px] mr-[12px]'>:</span> {category}</div>
             <div className='text-[#9F9F9F] mb-[12px]'>Tags <span className='ml-[16px] mr-[12px]'>:</span> Sofa, Chair, Home, Shop</div>
             <div className='text-[#9F9F9F] mb-[12px] flex'>Share <span className='ml-[16px] mr-[12px]'>:</span>
-            <div className="inline-flex items-center gap-[25px] text-black"><Link target="_blank" rel="noopener noreferrer" to={'https://www.facebook.com/'}><BiLogoFacebookCircle size={24}/></Link><Link target="_blank" rel="noopener noreferrer" to={'https://www.linkedin.com/'}><AiFillLinkedin size={24}/></Link><Link target="_blank" rel="noopener noreferrer" to={'https://twitter.com/'}><AiFillTwitterCircle size={24}/></Link></div>
+              <div className="inline-flex items-center gap-[25px] text-black">
+                <FacebookShareButton url={url} className='hover:scale-110 duration-200'>
+                  <BiLogoFacebookCircle className='w-[26px] h-[26px]'/>
+                </FacebookShareButton>
+                <LinkedinShareButton url={url} className='hover:scale-110 duration-200'>
+                    <AiFillLinkedin className='w-[26px] h-[26px]'/>
+                </LinkedinShareButton>
+                <TwitterShareButton url={url} className='hover:scale-110 duration-200'>
+                    <AiFillTwitterCircle className='w-[26px] h-[26px]'/>
+                </TwitterShareButton>
+              </div>
             </div>
           </div>
         </motion.div>

@@ -10,6 +10,7 @@ import { IoMdPricetag } from "react-icons/io";
 import Recommended from "../Recommended/Recommended";
 import { motion } from 'framer-motion';
 import { animation } from '../../utils/animation';
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from "react-share";
 
 
 const SingleBlogPage = () => {
@@ -51,9 +52,15 @@ const SingleBlogPage = () => {
               <div className='text-[#9F9F9F] mb-[12px]'>Author <span className='ml-[16px] mr-[12px]'>:</span>{author}</div>
               <div className='text-[#9F9F9F] mb-[12px] flex'>Share <span className='ml-[16px] mr-[12px]'>:</span>
               <div className="inline-flex items-center gap-[25px] text-black">
-                <Link target="_blank" rel="noopener noreferrer" to={`https://www.facebook.com/sharer.php?u=${shareUrl}&quote=${title}`}><BiLogoFacebookCircle size={24}/></Link>
-                <Link target="_blank" rel="noopener noreferrer" to={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}&title=${title}&summary=${description}`}><AiFillLinkedin size={24}/></Link>
-                <Link target="_blank" rel="noopener noreferrer" to={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${'note' + title}`}><AiFillTwitterCircle size={24}/></Link>
+              <FacebookShareButton url={shareUrl} className='hover:scale-110 duration-200'>
+                  <BiLogoFacebookCircle className='w-[26px] h-[26px]'/>
+                </FacebookShareButton>
+                <LinkedinShareButton url={shareUrl} className='hover:scale-110 duration-200'>
+                    <AiFillLinkedin className='w-[26px] h-[26px]'/>
+                </LinkedinShareButton>
+                <TwitterShareButton url={shareUrl} className='hover:scale-110 duration-200'>
+                    <AiFillTwitterCircle className='w-[26px] h-[26px]'/>
+                </TwitterShareButton>
               </div>
               </div>
             </div>

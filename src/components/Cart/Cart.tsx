@@ -50,16 +50,16 @@ const Cart = () => {
                 <div className="md:mt-[55px] mt-3 flex items-center justify-between" key={id}>
                   <div className='flex items-center text-[10px] md:text-base justify-between gap-[10px] md:gap-[50px]'>
                   <img className="w-[60px] h-[60px] md:w-[111px] md:h-[90px]" src={image} alt="image" />
-                  <Link to={`/shop/${id}`} className="text-[#9F9F9F]">{title}</Link>
+                  <Link to={`/shop/${id}`} className="text-[#9F9F9F] hover:scale-110 duration-300">{title}</Link>
                   <div className="md:ml-[60px] text-[#9F9F9F]">{promotional ? promotionalPrice : price}</div>
-                  <div className='md:ml-[70px] flex items-center md:py-[15px] py-[6px] px-[8px] border border-[#9F9F9F] rounded-[10px]'>
+                  <div className='hover:scale-110 duration-300 md:ml-[70px] flex items-center md:py-[15px] py-[6px] px-[8px] border border-[#9F9F9F] rounded-[10px]'>
                       <button onClick={() => quantity === 1 ? null : changeQuantity(item, quantity - 1)}>-</button>
                       <div className='md:mx-[22px] mx-[10px]'>{quantity}</div>
                       <button onClick={() => changeQuantity(item, quantity + 1)}>+</button>
                   </div>
                   <div className="md:ml-[20px]">Rp.{promotional ? parseInt(promotionalPrice.slice(3)) * quantity : parseInt(price.slice(3)) * quantity}</div>
                   </div>
-                  <TbTrashFilled onClick={() => handleRemoveFromCart(id)} className='cursor-pointer w-[22px] h-[22px] md:w-[28px] md:h-[28px] text-[#B88E2F]'/>
+                  <TbTrashFilled onClick={() => handleRemoveFromCart(id)} className='hover:scale-125 duration-200 cursor-pointer w-[22px] h-[22px] md:w-[28px] md:h-[28px] text-[#B88E2F]'/>
               </div>
               )
             }) : <div className='text-center mt-[70px] text-[24px] md:text-[32px]'>🛒 is empty 🤷‍♀️</div>}
@@ -74,7 +74,7 @@ const Cart = () => {
             <div>Total</div>
             <div>Rp. {cart.map(({price, promotional, promotionalPrice, quantity}) => (promotional ? parseInt(promotionalPrice.slice(3)) : parseInt(price.slice(3))) * quantity).reduce((prev, curr) => prev + curr, 0)}</div>
           </div>
-          <Link to={ROUTES.CHECKOUT} className="block border border-black text-[20px] py-[14px] rounded-[15px] text-center mt-[42px]">Check Out</Link>
+          <Link to={ROUTES.CHECKOUT} className="hover:bg-black hover:text-white duration-200 block border border-black text-[20px] py-[14px] rounded-[15px] text-center mt-[42px]">Check Out</Link>
         </motion.div>
       </motion.div>
       <Recommended/>
