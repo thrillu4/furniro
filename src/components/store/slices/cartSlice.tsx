@@ -1,20 +1,20 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {Product} from '../../../data/productTypes';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Product } from "../../../data/productTypes";
 
 type ProductState = {
-    cart: Product[];
-    favorite: Product[];
-    compare: Product[];
-}
+  cart: Product[];
+  favorite: Product[];
+  compare: Product[];
+};
 
-const initialState: ProductState = { 
-    cart: [],
-    favorite: [],
-    compare: []
-}
+const initialState: ProductState = {
+  cart: [],
+  favorite: [],
+  compare: [],
+};
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
@@ -24,11 +24,14 @@ const cartSlice = createSlice({
       if (found) {
         newCart = newCart.map((item) => {
           return item.id === action.payload.id
-            ? { ...item, quantity: action.payload.quantity || item.quantity + 1 }
+            ? {
+                ...item,
+                quantity: action.payload.quantity || item.quantity + 1,
+              }
             : item;
         });
       } else {
-        newCart.push({ ...action.payload});
+        newCart.push({ ...action.payload });
       }
       state.cart = newCart;
     },
@@ -37,7 +40,9 @@ const cartSlice = createSlice({
     },
     addToFavorite: (state, action: PayloadAction<Product>) => {
       const newFavorite = [...state.favorite];
-      const foundIndex = state.favorite.findIndex(({ id }) => id === action.payload.id);
+      const foundIndex = state.favorite.findIndex(
+        ({ id }) => id === action.payload.id,
+      );
 
       if (foundIndex !== -1) {
         newFavorite[foundIndex] = {
@@ -51,29 +56,42 @@ const cartSlice = createSlice({
       state.favorite = newFavorite;
     },
     removeFromFavorite: (state, action: PayloadAction<string>) => {
-      state.favorite = state.favorite.filter((item) => item.id !== action.payload);
+      state.favorite = state.favorite.filter(
+        (item) => item.id !== action.payload,
+      );
     },
     addToComparison: (state, action: PayloadAction<Product>) => {
-      const existingIndex = state.compare.findIndex(({ id }) => id === action.payload.id);
+      const existingIndex = state.compare.findIndex(
+        ({ id }) => id === action.payload.id,
+      );
       if (existingIndex !== -1) {
-        // If the product already exists, update its quantity
         state.compare[existingIndex] = {
           ...state.compare[existingIndex],
-          quantity: action.payload.quantity || state.compare[existingIndex].quantity + 1,
+          quantity:
+            action.payload.quantity ||
+            state.compare[existingIndex].quantity + 1,
         };
       } else {
         if (state.compare.length >= 2) {
-          // If there are already two items, replace the first one
           state.compare.shift();
         }
         state.compare.push({ ...action.payload });
       }
     },
     removeFromComparison: (state, action: PayloadAction<string>) => {
-      state.compare = state.compare.filter((item) => item.id !== action.payload);
+      state.compare = state.compare.filter(
+        (item) => item.id !== action.payload,
+      );
     },
   },
 });
 
-export const { addToCart, removeFromCart, removeFromFavorite, addToFavorite, addToComparison, removeFromComparison } = cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  removeFromFavorite,
+  addToFavorite,
+  addToComparison,
+  removeFromComparison,
+} = cartSlice.actions;
 export default cartSlice.reducer;
