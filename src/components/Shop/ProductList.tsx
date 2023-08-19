@@ -23,7 +23,7 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({currentPage, productsPerPage, handleAddToCart, handleAddToComparing, handleAddToFavorite, sortedProducts}) => {
 const [isOpenShareModal, setOpenShareModal] = useState(false);
-const [copied, setCopied] = useState('');
+const [actions, setActions] = useState('');
 const [isOpenDescrMenu, setOpenDescrMenu] = useState(false);
 const [activeProductId, setActiveProductId] = useState('');
 
@@ -38,12 +38,11 @@ const toggleOpenModal = () => {
 }
 
 const handleCopyLink = (str: string) => {
-    navigator.clipboard.writeText(url).then(() => {
-        setCopied(str)
-        setTimeout(() => {
-            setCopied('')
-        }, 3000)
-    })
+    navigator.clipboard.writeText(url)
+    setActions(str)
+    setTimeout(() => {
+        setActions('')
+    }, 3000)
 }
 
 const handleOpenDescrMenu = (id: string) => {
@@ -122,8 +121,8 @@ const handleOpenDescrMenu = (id: string) => {
                     </div>
                     <Link to={`/shop/${id}`} className="text-center mx-auto p-2 xl:mt-16 text-[10px] md:text-base mt-5 border border-white block w-28 md:w-28 md:py-3 hover:scale-105 transition-all duration-300">Show More</Link>
                 </div>
-                {copied && (
-                    <div className='fixed bottom-4 left-2 md:left-4 font-semibold bg-white border md:border-[2px] text-[10px] md:text-base border-black text-black  p-2 md:px-2 md:py-4 z-50'>{copied}</div>
+                {actions && (
+                    <div className='fixed bottom-4 left-2 md:left-4 font-semibold bg-white border md:border-[2px] text-[10px] md:text-base border-black text-black  p-2 md:px-2 md:py-4 z-50'>{actions}</div>
                 )}
             </motion.div>
         )

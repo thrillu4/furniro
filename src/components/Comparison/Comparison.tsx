@@ -4,19 +4,33 @@ import { Link } from "react-router-dom"
 import { ROUTES } from "../../utils/routes"
 import { useAppDispatch, useAppSelector } from "../store/hooks"
 import RatingStars from "../SingleProduct/RatingStats"
-import { addToCart } from "../store/slices/cartSlice"
+import { addToCart, removeFromComparison } from "../store/slices/cartSlice"
 import { Product } from "../../data/productTypes"
 import { motion } from 'framer-motion';
 import { animation } from "../../utils/animation";
+import { useState } from "react"
 
 const Comparison = () => {
+  const [actions, setActions] = useState('');
   const comparingItems = useAppSelector(item => item.cart.compare)
 
   const dispatch = useAppDispatch()
 
-  const handleAddToCart = (currProduct: Product) => {
+  const handleAddToCart = (currProduct: Product, action: string) => {
     dispatch(addToCart(currProduct));
+    setActions(action)
+    setTimeout(() => {
+      setActions('')
+    }, 3000)
   };
+
+  const handleRemoveFromComparison = (id: string, action: string) => {
+    dispatch(removeFromComparison(id));
+    setActions(action)
+    setTimeout(() => {
+      setActions('')
+    }, 3000)
+  }
 
   return (
     <section>
@@ -64,7 +78,8 @@ const Comparison = () => {
                     <span className="font-semibold">Discount</span> {percent}
                   </div>}
                 </div>
-                <button onClick={() => handleAddToCart(item)} className="hover:text-[#B88E2F] hover:bg-white duration-300 border border-[#B88E2F] bg-[#B88E2F] py-[5px] md:py-[17px] text-[12px] md:text-[20px] text-white block mx-auto px-[10px] md:px-[48px]">Add To Cart</button>
+                <button type="button" onClick={() => handleRemoveFromComparison(id, 'Removed from comparison')} className="hover:border hover:border-zinc-400  duration-200 mx-auto border p-2 mb-2 text-[8px] md:text-[12px]">remove from comparison</button>
+                <button type="button" onClick={() => handleAddToCart(item, 'Added to cart')} className="hover:text-[#B88E2F] hover:bg-white duration-300 border border-[#B88E2F] bg-[#B88E2F] py-[5px] md:py-[17px] text-[12px] md:text-[20px] text-white block mx-auto px-[10px] md:px-[48px]">Add To Cart</button>
               </motion.div>
             )
           })}
@@ -77,6 +92,7 @@ const Comparison = () => {
           <Link className="hover:scale-110 duration-300 inline-block md:text-[20px] text-[16px] text-[#727272] border-b border-[#727272] pb-1" to={ROUTES.CART}>Open Cart</Link>
         </motion.div>
       </motion.form>
+      {actions && <span className="fixed bottom-4 left-2 md:left-4 font-semibold bg-white border md:border-[2px] text-[10px] md:text-base border-black text-black  p-2 md:px-2 md:py-4 z-50">{actions}</span>}
       <Recommended/>
     </section>
   )

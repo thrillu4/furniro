@@ -69,8 +69,11 @@ const cartSlice = createSlice({
         state.compare.push({ ...action.payload });
       }
     },
+    removeFromComparison: (state, action: PayloadAction<string>) => {
+      state.compare = state.compare.filter((item) => item.id !== action.payload);
+    },
   },
 });
 
-export const { addToCart, removeFromCart, removeFromFavorite, addToFavorite, addToComparison } = cartSlice.actions;
+export const { addToCart, removeFromCart, removeFromFavorite, addToFavorite, addToComparison, removeFromComparison } = cartSlice.actions;
 export default cartSlice.reducer;

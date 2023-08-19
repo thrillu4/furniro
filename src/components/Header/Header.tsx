@@ -84,7 +84,7 @@ const Header = () => {
           <div className="name-site md:text-3xl ml-1 font-bold">Furniro</div>
         </Link>
         <TfiMenu onClick={toggleOpenHamburger} className='md:hidden w-[22px] h-[22px] relative'/>
-        <span className={!cart.length && !favorite.length && !compare.length ? 'hidden none' : "absolute bottom-[-10px] right-[4px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{(cart.length || favorite.length || compare.length) > 0 && cart.length + favorite.length + compare.length}</span>
+        <span className={!cart.length && !favorite.length && !compare.length ? 'hidden none' : "absolute md:hidden bottom-[-10px] right-[4px] text-white bg-orange-400 rounded-full w-4 h-4 flex items-center justify-center text-xs z-50"}>{(cart.length || favorite.length || compare.length) > 0 && cart.length + favorite.length + compare.length}</span>
         {isOpenHamburger && (
           <div className="fixed z-50 inset-0 bg-black block w-full  p-[10px]">
             <AiOutlineClose onClick={toggleOpenHamburger} className='w-[25px] h-[25px] text-white ml-auto cursor-pointer'/>
