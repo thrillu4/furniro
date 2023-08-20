@@ -1,14 +1,14 @@
+import { motion } from "framer-motion";
 import { MdNavigateNext } from "react-icons/md";
+import { animation } from "../../utils/animation";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { addToCart, removeFromCart } from "../store/slices/cartSlice";
-import { motion } from "framer-motion";
-import { animation } from "../../utils/animation";
 
-import { ROUTES } from "../../utils/routes";
-import { Link } from "react-router-dom";
-import Recommended from "../Recommended/Recommended";
 import { TbTrashFilled } from "react-icons/tb";
+import { Link } from "react-router-dom";
 import { Product } from "../../data/productTypes";
+import { ROUTES } from "../../utils/routes";
+import Recommended from "../Recommended/Recommended";
 
 const Cart = () => {
   const cart = useAppSelector((cart) => cart.cart.cart);

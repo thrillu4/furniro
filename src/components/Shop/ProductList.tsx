@@ -1,19 +1,23 @@
-import { useState } from "react";
-import { AiFillCopy, AiOutlineHeart } from "react-icons/ai";
-import { BsFillShareFill } from "react-icons/bs";
-import { MdCompareArrows } from "react-icons/md";
-import { CgClose } from "react-icons/cg";
-import { AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { BiLogoFacebookCircle } from "react-icons/bi";
-import { Link } from "react-router-dom";
-import { Product } from "../../data/productTypes";
 import { motion } from "framer-motion";
-import { animation } from "../../utils/animation";
+import { useState } from "react";
+import {
+  AiFillCopy,
+  AiFillLinkedin,
+  AiFillTwitterCircle,
+  AiOutlineHeart,
+} from "react-icons/ai";
+import { BiLogoFacebookCircle } from "react-icons/bi";
+import { BsFillShareFill } from "react-icons/bs";
+import { CgClose } from "react-icons/cg";
+import { MdCompareArrows } from "react-icons/md";
+import { Link } from "react-router-dom";
 import {
   FacebookShareButton,
-  TwitterShareButton,
   LinkedinShareButton,
+  TwitterShareButton,
 } from "react-share";
+import { Product } from "../../data/productTypes";
+import { animation } from "../../utils/animation";
 
 interface ProductListProps {
   currentPage: number;

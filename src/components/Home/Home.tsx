@@ -1,44 +1,44 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
+import "swiper/css"
+import "swiper/css/effect-coverflow"
+import "swiper/css/pagination"
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules"
+import { Swiper, SwiperSlide } from "swiper/react"
 
-import ProductList from "../Shop/ProductList";
-import { Product } from "../../data/productTypes";
-import { useAppDispatch } from "../store/hooks";
+import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
+import { Product } from "../../data/productTypes"
+import products from "../../data/products.json"
+import { animation } from "../../utils/animation"
+import { ROUTES } from "../../utils/routes"
+import ProductList from "../Shop/ProductList"
+import { useAppDispatch } from "../store/hooks"
 import {
   addToCart,
   addToComparison,
   addToFavorite,
-} from "../store/slices/cartSlice";
-import products from "../../data/products.json";
-import { ROUTES } from "../../utils/routes";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { animation } from "../../utils/animation";
+} from "../store/slices/cartSlice"
 
 const Home = () => {
   const pagination = {
     clickable: false,
 
     renderBullet: function (__: number, className: number | string) {
-      return `<span class='${className} w-7 h-7 border bg-white border-orange-400'><span class=" w-3 h-3 border rounded-full flex items-center bg-orange-400 my-auto mt-[7px] mx-auto"></span></span>`;
+      return `<span class='${className} w-7 h-7 border bg-white border-orange-400'><span class=" w-3 h-3 border rounded-full flex items-center bg-orange-400 my-auto mt-[7px] mx-auto"></span></span>`
     },
-  };
+  }
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const handleAddToCart = (currProduct: Product) => {
-    dispatch(addToCart(currProduct));
-  };
+    dispatch(addToCart(currProduct))
+  }
 
   const handleAddToFavorite = (currProduct: Product) => {
-    dispatch(addToFavorite(currProduct));
-  };
+    dispatch(addToFavorite(currProduct))
+  }
 
   const handleAddToComparing = (currProduct: Product) => {
-    dispatch(addToComparison(currProduct));
-  };
+    dispatch(addToComparison(currProduct))
+  }
 
   return (
     <>
@@ -136,16 +136,14 @@ const Home = () => {
           </button>
         </Link>
       </div>
-      <div className="slider-component relative md:mt-16">
-        <div className="mb-60 mt-12 md:ml-4 md:mt-56 xl:ml-24">
+      <div className="slider-component relative mt-[50px] md:mt-[100px] flex flex-col md:flex-row justify-center items-center gap-[40px]">
+        <div className="xl:pl-[100px]">
           <h2 className="font-bold md:text-xl lg:text-4xl">
-            50+ Beautiful rooms
-            <br />
-            inspiration
+            50+ Beautiful rooms inspiration
           </h2>
           <div className="mt-2  text-sm font-medium text-gray-500 md:text-[12px] lg:text-base">
-            Our designer already made a lot of beautiful
-            <br /> prototipe of rooms that inspire you
+            Our designer already made a lot of beautiful prototype of rooms that
+            inspire you
           </div>
           <Link
             to={ROUTES.BLOG}
@@ -165,7 +163,7 @@ const Home = () => {
           }}
           grabCursor={true}
           autoplay={{
-            delay: 2500,
+            delay: 3000,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
@@ -180,11 +178,11 @@ const Home = () => {
           }}
           pagination={pagination}
           modules={[Autoplay, EffectCoverflow, Pagination]}
-          className="mySwiper absolute -bottom-[260px] w-full md:-top-28 md:right-0 md:max-w-[444px] lg:-top-32 lg:right-[40px]  lg:max-w-[555px] xl:-top-36 xl:right-0 xl:max-w-[800px]"
+          className="mySwiper w-full h-[250px] md:h-[380px] lg:h-[480px] xl:h-[580px]"
         >
-          <SwiperSlide className="relative h-[220px] max-w-sm md:h-[380px] lg:h-[452px] xl:h-582">
+          <SwiperSlide className="h-full max-w-[400px] relative">
             <img className="h-full" src="images/bed-room-peace.png" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
               <div>
                 01{" "}
                 <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
@@ -195,9 +193,12 @@ const Home = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="h-[220px] max-w-sm md:h-[380px] lg:h-[452px] xl:h-582">
-            <img className="h-full" src="images/kitchen-room.png" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+          <SwiperSlide className="h-full max-w-[400px]">
+            <img
+              className="h-full object-cover w-full"
+              src="images/kitchen-room.png"
+            />
+            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
               <div>
                 02{" "}
                 <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
@@ -208,9 +209,12 @@ const Home = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="h-[220px] max-w-sm md:h-[380px] lg:h-[452px] xl:h-582">
-            <img className="h-full" src="images/beautiful1.jpg" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+          <SwiperSlide className="h-full max-w-[400px]">
+            <img
+              className="h-full object-cover w-full"
+              src="images/beautiful1.jpg"
+            />
+            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
               <div>
                 03{" "}
                 <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
@@ -221,9 +225,12 @@ const Home = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="h-[220px] max-w-sm md:h-[380px] lg:h-[452px] xl:h-582">
-            <img className="h-full" src="images/beautiful2.jpg" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+          <SwiperSlide className="h-full max-w-[400px]">
+            <img
+              className="h-full object-cover w-full"
+              src="images/beautiful2.jpg"
+            />
+            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
               <div>
                 04{" "}
                 <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
@@ -234,9 +241,12 @@ const Home = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="h-[220px] max-w-sm md:h-[380px] lg:h-[452px] xl:h-582">
-            <img className="h-full" src="images/beautiful3.jpg" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+          <SwiperSlide className="h-full max-w-[400px]">
+            <img
+              className="h-full object-cover w-full"
+              src="images/beautiful3.jpg"
+            />
+            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
               <div>
                 05{" "}
                 <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
@@ -247,9 +257,12 @@ const Home = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="h-[220px] max-w-sm md:h-[380px] lg:h-[452px] xl:h-582">
-            <img className="h-full" src="images/beautiful4.jpg" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+          <SwiperSlide className="h-full max-w-[400px]">
+            <img
+              className="h-full object-cover w-full"
+              src="images/beautiful4.jpg"
+            />
+            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
               <div>
                 06{" "}
                 <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
@@ -260,9 +273,12 @@ const Home = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide className="h-[220px] max-w-sm md:h-[380px] lg:h-[452px] xl:h-582">
-            <img className="h-full" src="images/beautiful5.jpg" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+          <SwiperSlide className="h-full max-w-[400px]">
+            <img
+              className="h-full object-cover w-full"
+              src="images/beautiful5.jpg"
+            />
+            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
               <div>
                 07{" "}
                 <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
@@ -295,7 +311,7 @@ const Home = () => {
         />
       </motion.div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

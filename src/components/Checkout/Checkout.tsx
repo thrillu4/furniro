@@ -1,11 +1,11 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
-import Recommended from "../Recommended/Recommended";
-import { ROUTES } from "../../utils/routes";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../store/hooks";
-import { motion } from "framer-motion";
 import { animation } from "../../utils/animation";
+import { ROUTES } from "../../utils/routes";
+import Recommended from "../Recommended/Recommended";
+import { useAppSelector } from "../store/hooks";
 
 const Checkout = () => {
   const [transferPayment, setTransferPayment] = useState(true);

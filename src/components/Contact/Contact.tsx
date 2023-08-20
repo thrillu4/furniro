@@ -1,8 +1,8 @@
+import { motion } from "framer-motion";
 import { BsFillGeoAltFill, BsFillTelephoneFill } from "react-icons/bs";
 import { MdAccessTimeFilled, MdNavigateNext } from "react-icons/md";
-import Recommended from "../Recommended/Recommended";
-import { motion } from "framer-motion";
 import { animation } from "../../utils/animation";
+import Recommended from "../Recommended/Recommended";
 
 const Contact = () => {
   return (

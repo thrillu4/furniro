@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
-import SingleProduct from "./SingleProduct";
 import products from "../../data/products.json";
 import { ROUTES } from "../../utils/routes";
+import SingleProduct from "./SingleProduct";
 
 const SingleProductPage: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();

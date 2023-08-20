@@ -1,21 +1,21 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/routes";
-import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
-import { TfiMenu } from "react-icons/tfi";
-import { MdCompareArrows } from "react-icons/md";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
   AiOutlineClose,
   AiOutlineHeart,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { IoIosCloseCircle, IoMdHeartDislike } from "react-icons/io";
-import { removeFromCart, removeFromFavorite } from "../store/slices/cartSlice";
-import product from "../../data/products.json";
+import { MdCompareArrows } from "react-icons/md";
+import { TfiMenu } from "react-icons/tfi";
+import { Link } from "react-router-dom";
 import blog from "../../data/blog.json";
-import { motion } from "framer-motion";
+import product from "../../data/products.json";
 import { animation } from "../../utils/animation";
+import { ROUTES } from "../../utils/routes";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { removeFromCart, removeFromFavorite } from "../store/slices/cartSlice";
 
 const Header = () => {
   const products = product.products;

@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/routes";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { animation } from "../../utils/animation";
+import { ROUTES } from "../../utils/routes";
 
 const Footer = () => {
   return (

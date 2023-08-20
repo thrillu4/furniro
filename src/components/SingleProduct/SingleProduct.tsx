@@ -1,21 +1,21 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
-import { SlArrowRight } from "react-icons/sl";
-import { Product } from "../../data/productTypes";
-import RatingStars from "./RatingStats";
-import { useAppDispatch } from "../store/hooks";
-import { addToCart, addToComparison } from "../store/slices/cartSlice";
 import { AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { BiLogoFacebookCircle } from "react-icons/bi";
+import { SlArrowRight } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import TabContainer from "./TabContainer";
-import { ROUTES } from "../../utils/routes";
-import { motion } from "framer-motion";
-import { animation } from "../../utils/animation";
 import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
 } from "react-share";
+import { Product } from "../../data/productTypes";
+import { animation } from "../../utils/animation";
+import { ROUTES } from "../../utils/routes";
+import { useAppDispatch } from "../store/hooks";
+import { addToCart, addToComparison } from "../store/slices/cartSlice";
+import RatingStars from "./RatingStats";
+import TabContainer from "./TabContainer";
 
 type SingleProductProps = {
   product: Product;

@@ -1,14 +1,14 @@
-import { MdNavigateNext } from "react-icons/md";
-import Recommended from "../Recommended/Recommended";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../utils/routes";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import RatingStars from "../SingleProduct/RatingStats";
-import { addToCart, removeFromComparison } from "../store/slices/cartSlice";
-import { Product } from "../../data/productTypes";
 import { motion } from "framer-motion";
-import { animation } from "../../utils/animation";
 import { useState } from "react";
+import { MdNavigateNext } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { Product } from "../../data/productTypes";
+import { animation } from "../../utils/animation";
+import { ROUTES } from "../../utils/routes";
+import Recommended from "../Recommended/Recommended";
+import RatingStars from "../SingleProduct/RatingStats";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { addToCart, removeFromComparison } from "../store/slices/cartSlice";
 
 const Comparison = () => {
   const [actions, setActions] = useState("");

@@ -1,20 +1,20 @@
-import { Link, useParams } from "react-router-dom";
-import blogs from "../../data/blog.json";
-import { ROUTES } from "../../utils/routes";
-import { SlArrowRight } from "react-icons/sl";
+import { motion } from "framer-motion";
 import { AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { FaUser } from "react-icons/fa";
-import { MdDateRange } from "react-icons/md";
 import { IoMdPricetag } from "react-icons/io";
-import Recommended from "../Recommended/Recommended";
-import { motion } from "framer-motion";
-import { animation } from "../../utils/animation";
+import { MdDateRange } from "react-icons/md";
+import { SlArrowRight } from "react-icons/sl";
+import { Link, useParams } from "react-router-dom";
 import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
 } from "react-share";
+import blogs from "../../data/blog.json";
+import { animation } from "../../utils/animation";
+import { ROUTES } from "../../utils/routes";
+import Recommended from "../Recommended/Recommended";
 
 const SingleBlogPage = () => {
   const { itemId } = useParams<{ itemId: string }>();

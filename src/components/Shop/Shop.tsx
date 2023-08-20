@@ -1,22 +1,22 @@
 import { useState } from "react";
-import Pagination from "./Pagination";
 import products from "../../data/products.json";
+import Pagination from "./Pagination";
 
-import { MdNavigateNext } from "react-icons/md";
-import { GiSettingsKnobs } from "react-icons/gi";
+import { motion } from "framer-motion";
 import { AiFillCaretDown } from "react-icons/ai";
 import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
+import { GiSettingsKnobs } from "react-icons/gi";
+import { MdNavigateNext } from "react-icons/md";
 import { Product } from "../../data/productTypes";
+import { animation } from "../../utils/animation";
+import Recommended from "../Recommended/Recommended";
 import { useAppDispatch } from "../store/hooks";
 import {
   addToCart,
   addToComparison,
   addToFavorite,
 } from "../store/slices/cartSlice";
-import Recommended from "../Recommended/Recommended";
 import ProductList from "./ProductList";
-import { motion } from "framer-motion";
-import { animation } from "../../utils/animation";
 
 const Shop: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);

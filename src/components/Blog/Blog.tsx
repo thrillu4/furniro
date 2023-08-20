@@ -1,14 +1,14 @@
-import { MdDateRange, MdNavigateNext } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
-import Recommended from "../Recommended/Recommended";
-import blog from "../../data/blog.json";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import Pagination from "../Shop/Pagination";
-import { IoMdPricetag } from "react-icons/io";
-import { HiMagnifyingGlass } from "react-icons/hi2";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { FaUser } from "react-icons/fa";
+import { HiMagnifyingGlass } from "react-icons/hi2";
+import { IoMdPricetag } from "react-icons/io";
+import { MdDateRange, MdNavigateNext } from "react-icons/md";
+import { Link } from "react-router-dom";
+import blog from "../../data/blog.json";
 import { animation } from "../../utils/animation";
+import Recommended from "../Recommended/Recommended";
+import Pagination from "../Shop/Pagination";
 
 const Blog = () => {
   const posts = blog.blog;
