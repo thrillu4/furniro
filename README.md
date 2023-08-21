@@ -47,6 +47,8 @@ I will try to add new things to the project whenever possible and how I will lea
 
 [Swiper](https://swiperjs.com/)
 
+[React Helmet](https://github.com/nfl/react-helmet)
+
 
 ## 📂 Installation
 
