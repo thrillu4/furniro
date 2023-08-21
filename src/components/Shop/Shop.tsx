@@ -1,72 +1,73 @@
-import { useState } from "react";
-import products from "../../data/products.json";
-import Pagination from "./Pagination";
+import { useState } from "react"
+import products from "../../data/products.json"
+import Pagination from "./Pagination"
 
-import { motion } from "framer-motion";
-import { AiFillCaretDown } from "react-icons/ai";
-import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
-import { GiSettingsKnobs } from "react-icons/gi";
-import { MdNavigateNext } from "react-icons/md";
-import { Product } from "../../data/productTypes";
-import { animation } from "../../utils/animation";
-import Recommended from "../Recommended/Recommended";
-import { useAppDispatch } from "../store/hooks";
+import { motion } from "framer-motion"
+import { Helmet } from "react-helmet"
+import { AiFillCaretDown } from "react-icons/ai"
+import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs"
+import { GiSettingsKnobs } from "react-icons/gi"
+import { MdNavigateNext } from "react-icons/md"
+import { Product } from "../../data/productTypes"
+import { animation } from "../../utils/animation"
+import Recommended from "../Recommended/Recommended"
+import { useAppDispatch } from "../store/hooks"
 import {
   addToCart,
   addToComparison,
   addToFavorite,
-} from "../store/slices/cartSlice";
-import ProductList from "./ProductList";
+} from "../store/slices/cartSlice"
+import ProductList from "./ProductList"
 
 const Shop: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(16);
-  const [sortedProducts, setSortedProducts] = useState(products.products);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productsPerPage, setProductsPerPage] = useState(16)
+  const [sortedProducts, setSortedProducts] = useState(products.products)
 
-  const totalProducts = products.products.length;
-  const totalPages = totalProducts / productsPerPage;
+  const totalProducts = products.products.length
+  const totalPages = totalProducts / productsPerPage
 
   //redux
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const handleAddToCart = (currProduct: Product) => {
-    dispatch(addToCart(currProduct));
-  };
+    dispatch(addToCart(currProduct))
+  }
 
   const handleAddToComparing = (currProduct: Product) => {
-    dispatch(addToComparison(currProduct));
-  };
+    dispatch(addToComparison(currProduct))
+  }
 
   const handleAddToFavorite = (currProduct: Product) => {
-    dispatch(addToFavorite(currProduct));
-  };
+    dispatch(addToFavorite(currProduct))
+  }
   //redux
 
   const changeProductsPerPage = (num: number): void => {
     if (currentPage === 1) {
-      setProductsPerPage(num);
+      setProductsPerPage(num)
     } else {
-      setCurrentPage(1);
-      setProductsPerPage(num);
+      setCurrentPage(1)
+      setProductsPerPage(num)
     }
-  };
+  }
 
   const handleFiltered = (order: "def" | "asc" | "desc"): void => {
     if (order == "def") {
-      setSortedProducts(products.products);
+      setSortedProducts(products.products)
     } else {
       const sorted = [...sortedProducts].sort((a, b) => {
         const priceA = a.promotional
           ? parseInt(a.promotionalPrice.slice(3))
-          : parseInt(a.price.slice(3));
+          : parseInt(a.price.slice(3))
         const priceB = b.promotional
           ? parseInt(b.promotionalPrice.slice(3))
-          : parseInt(b.price.slice(3));
-        return order === "asc" ? priceA - priceB : priceB - priceA;
-      });
-      setSortedProducts(sorted);
+          : parseInt(b.price.slice(3))
+        return order === "asc" ? priceA - priceB : priceB - priceA
+      })
+      setSortedProducts(sorted)
     }
-  };
+  }
 
   return (
     <motion.section
@@ -74,6 +75,10 @@ const Shop: React.FC = () => {
       whileInView="visible"
       className="shop-page"
     >
+      <Helmet>
+        <meta name="description" content="All our products are shown here" />
+        <title>Shop Page</title>
+      </Helmet>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -179,7 +184,7 @@ const Shop: React.FC = () => {
       />
       <Recommended />
     </motion.section>
-  );
-};
+  )
+}
 
-export default Shop;
+export default Shop

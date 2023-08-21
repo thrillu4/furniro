@@ -1,14 +1,22 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import { Helmet } from "react-helmet"
 import {
   IoIosCheckmarkCircleOutline,
   IoIosInformationCircle,
   IoIosWarning,
-} from "react-icons/io";
-import { animation } from "../../utils/animation";
+} from "react-icons/io"
+import { animation } from "../../utils/animation"
 
 const PrivacyPolicy = () => {
   return (
     <motion.div initial="hidden" whileInView="visible" className="p-7 md:p-16">
+      <Helmet>
+        <meta
+          name="description"
+          content="Privacy Policy - explains how we collect, use, and disclose your personal information when you use our services."
+        />
+        <title>Privacy Policy</title>
+      </Helmet>
       <motion.h1
         variants={animation}
         className="mb-8 text-xl font-bold md:text-4xl"
@@ -136,7 +144,7 @@ const PrivacyPolicy = () => {
         contact us at privacy@example.com.
       </motion.p>
     </motion.div>
-  );
-};
+  )
+}
 
-export default PrivacyPolicy;
+export default PrivacyPolicy

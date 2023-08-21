@@ -1,29 +1,37 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { MdNavigateNext } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { animation } from "../../utils/animation";
-import { ROUTES } from "../../utils/routes";
-import Recommended from "../Recommended/Recommended";
-import { useAppSelector } from "../store/hooks";
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { MdNavigateNext } from "react-icons/md"
+import { Link } from "react-router-dom"
+import { animation } from "../../utils/animation"
+import { ROUTES } from "../../utils/routes"
+import Recommended from "../Recommended/Recommended"
+import { useAppSelector } from "../store/hooks"
+import { Helmet } from "react-helmet"
 
 const Checkout = () => {
-  const [transferPayment, setTransferPayment] = useState(true);
-  const [deliveryPayment, setDeliveryPayment] = useState(false);
-  const cart = useAppSelector((cart) => cart.cart.cart);
+  const [transferPayment, setTransferPayment] = useState(true)
+  const [deliveryPayment, setDeliveryPayment] = useState(false)
+  const cart = useAppSelector((cart) => cart.cart.cart)
 
   const toggleTransferPayment = () => {
-    setTransferPayment(true);
-    setDeliveryPayment(false);
-  };
+    setTransferPayment(true)
+    setDeliveryPayment(false)
+  }
 
   const toggleDeliveryPayment = () => {
-    setDeliveryPayment(true);
-    setTransferPayment(false);
-  };
+    setDeliveryPayment(true)
+    setTransferPayment(false)
+  }
 
   return (
     <section className="check-out">
+      <Helmet>
+        <meta
+          name="description"
+          content="Checkout page confirming the purchase"
+        />
+        <title>Checkout Page</title>
+      </Helmet>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -221,7 +229,7 @@ const Checkout = () => {
                             : parseInt(price.slice(3)) * quantity}
                         </div>
                       </div>
-                    );
+                    )
                   },
                 )}
                 <div className="mb-3 flex items-center justify-between">
@@ -301,7 +309,7 @@ const Checkout = () => {
       </div>
       <Recommended />
     </section>
-  );
-};
+  )
+}
 
-export default Checkout;
+export default Checkout

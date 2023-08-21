@@ -1,47 +1,52 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { FaUser } from "react-icons/fa";
-import { HiMagnifyingGlass } from "react-icons/hi2";
-import { IoMdPricetag } from "react-icons/io";
-import { MdDateRange, MdNavigateNext } from "react-icons/md";
-import { Link } from "react-router-dom";
-import blog from "../../data/blog.json";
-import { animation } from "../../utils/animation";
-import Recommended from "../Recommended/Recommended";
-import Pagination from "../Shop/Pagination";
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { Helmet } from "react-helmet"
+import { FaUser } from "react-icons/fa"
+import { HiMagnifyingGlass } from "react-icons/hi2"
+import { IoMdPricetag } from "react-icons/io"
+import { MdDateRange, MdNavigateNext } from "react-icons/md"
+import { Link } from "react-router-dom"
+import blog from "../../data/blog.json"
+import { animation } from "../../utils/animation"
+import Recommended from "../Recommended/Recommended"
+import Pagination from "../Shop/Pagination"
 
 const Blog = () => {
-  const posts = blog.blog;
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(3);
-  const [activeCategory, setActiveCategory] = useState("");
-  const [filteredPosts, setFilteredPosts] = useState(posts);
-  const [searchValue, setSearchValue] = useState("");
-  const categoryCount: Record<string, number> = {};
+  const posts = blog.blog
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage] = useState(3)
+  const [activeCategory, setActiveCategory] = useState("")
+  const [filteredPosts, setFilteredPosts] = useState(posts)
+  const [searchValue, setSearchValue] = useState("")
+  const categoryCount: Record<string, number> = {}
 
-  const lastPostsIndex = currentPage * postsPerPage;
-  const firstPostsIndex = lastPostsIndex - postsPerPage;
-  const currentPosts = filteredPosts.slice(firstPostsIndex, lastPostsIndex);
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const lastPostsIndex = currentPage * postsPerPage
+  const firstPostsIndex = lastPostsIndex - postsPerPage
+  const currentPosts = filteredPosts.slice(firstPostsIndex, lastPostsIndex)
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage)
 
   posts.forEach((item) => {
     if (categoryCount[item.category]) {
-      categoryCount[item.category]++;
+      categoryCount[item.category]++
     } else {
-      categoryCount[item.category] = 1;
+      categoryCount[item.category] = 1
     }
-  });
+  })
 
-  const categories = Object.keys(categoryCount);
+  const categories = Object.keys(categoryCount)
 
   const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-    const filtered = posts.filter((elem) => elem.category === category);
-    setFilteredPosts(filtered);
-  };
+    setActiveCategory(category)
+    const filtered = posts.filter((elem) => elem.category === category)
+    setFilteredPosts(filtered)
+  }
 
   return (
     <motion.section initial="hidden" whileInView="visible">
+      <Helmet>
+        <meta name="description" content="Blog page with article" />
+        <title>Blog Page</title>
+      </Helmet>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -71,7 +76,7 @@ const Blog = () => {
         <div className="blog-items md:w-[817px]">
           {currentPosts.map((item, index) => {
             const { id, author, category, date, description, image, title } =
-              item;
+              item
             return (
               <motion.div
                 variants={animation}
@@ -114,7 +119,7 @@ const Blog = () => {
                   Read more
                 </Link>
               </motion.div>
-            );
+            )
           })}
         </div>
         <motion.div className="blog-filter md:w-[393px]">
@@ -130,7 +135,7 @@ const Blog = () => {
                 name="search"
                 id="search"
                 onChange={(event) => {
-                  setSearchValue(event.target.value);
+                  setSearchValue(event.target.value)
                 }}
                 value={searchValue}
               />
@@ -138,18 +143,18 @@ const Blog = () => {
                 posts
                   .filter((val) => {
                     if (searchValue == "") {
-                      return val;
+                      return val
                     } else if (
                       val.title
                         .toLowerCase()
                         .includes(searchValue.toLowerCase())
                     ) {
-                      return val;
+                      return val
                     }
                   })
                   .slice(0, 3)
                   .map((item) => {
-                    const { id, date, image, title } = item;
+                    const { id, date, image, title } = item
                     return (
                       <Link
                         to={`/blog/${id}`}
@@ -168,7 +173,7 @@ const Blog = () => {
                           </div>
                         </div>
                       </Link>
-                    );
+                    )
                   })}
             </div>
             <div className="mb-[15px] mt-[43px] px-[20px] text-[24px] font-semibold md:mb-[33px]">
@@ -198,7 +203,7 @@ const Blog = () => {
                 .slice(-5)
                 .reverse()
                 .map((item) => {
-                  const { id, date, image, title } = item;
+                  const { id, date, image, title } = item
                   return (
                     <Link
                       to={`/blog/${id}`}
@@ -215,7 +220,7 @@ const Blog = () => {
                         <div className="text-[12px] text-[#9F9F9F]">{date}</div>
                       </div>
                     </Link>
-                  );
+                  )
                 })}
             </div>
           </div>
@@ -230,7 +235,7 @@ const Blog = () => {
       />
       <Recommended />
     </motion.section>
-  );
-};
+  )
+}
 
-export default Blog;
+export default Blog

@@ -5,6 +5,7 @@ import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import { motion } from "framer-motion"
+import { Helmet } from "react-helmet"
 import { Link } from "react-router-dom"
 import { Product } from "../../data/productTypes"
 import products from "../../data/products.json"
@@ -42,6 +43,10 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <meta name="description" content="Home page Furniro" />
+        <title>Furniro</title>
+      </Helmet>
       <motion.div
         initial="hidden"
         whileInView="visible"

@@ -1,29 +1,37 @@
-import { motion } from "framer-motion";
-import { MdNavigateNext } from "react-icons/md";
-import { animation } from "../../utils/animation";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { addToCart, removeFromCart } from "../store/slices/cartSlice";
+import { motion } from "framer-motion"
+import { MdNavigateNext } from "react-icons/md"
+import { animation } from "../../utils/animation"
+import { useAppDispatch, useAppSelector } from "../store/hooks"
+import { addToCart, removeFromCart } from "../store/slices/cartSlice"
 
-import { TbTrashFilled } from "react-icons/tb";
-import { Link } from "react-router-dom";
-import { Product } from "../../data/productTypes";
-import { ROUTES } from "../../utils/routes";
-import Recommended from "../Recommended/Recommended";
+import { Helmet } from "react-helmet"
+import { TbTrashFilled } from "react-icons/tb"
+import { Link } from "react-router-dom"
+import { Product } from "../../data/productTypes"
+import { ROUTES } from "../../utils/routes"
+import Recommended from "../Recommended/Recommended"
 
 const Cart = () => {
-  const cart = useAppSelector((cart) => cart.cart.cart);
-  const dispatch = useAppDispatch();
+  const cart = useAppSelector((cart) => cart.cart.cart)
+  const dispatch = useAppDispatch()
 
   const changeQuantity = (item: Product, quantity: number) => {
-    dispatch(addToCart({ ...item, quantity }));
-  };
+    dispatch(addToCart({ ...item, quantity }))
+  }
 
   const handleRemoveFromCart = (id: string) => {
-    dispatch(removeFromCart(id));
-  };
+    dispatch(removeFromCart(id))
+  }
 
   return (
     <section className="cart">
+      <Helmet>
+        <meta
+          name="description"
+          content="Cart page with your selected products"
+        />
+        <title>Cart Page</title>
+      </Helmet>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -76,7 +84,7 @@ const Cart = () => {
                 promotional,
                 promotionalPrice,
                 quantity,
-              } = item;
+              } = item
               return (
                 <div
                   className="mt-3 flex items-center justify-between md:mt-[55px]"
@@ -126,7 +134,7 @@ const Cart = () => {
                     className="h-[22px] w-[22px] cursor-pointer text-[#B88E2F] duration-200 hover:scale-125 md:h-[28px] md:w-[28px]"
                   />
                 </div>
-              );
+              )
             })
           ) : (
             <div className="mt-[70px] text-center text-[24px] md:text-[32px]">
@@ -179,7 +187,7 @@ const Cart = () => {
       </motion.div>
       <Recommended />
     </section>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

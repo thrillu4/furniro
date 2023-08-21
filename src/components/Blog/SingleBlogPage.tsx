@@ -1,25 +1,26 @@
-import { motion } from "framer-motion";
-import { AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { BiLogoFacebookCircle } from "react-icons/bi";
-import { FaUser } from "react-icons/fa";
-import { IoMdPricetag } from "react-icons/io";
-import { MdDateRange } from "react-icons/md";
-import { SlArrowRight } from "react-icons/sl";
-import { Link, useParams } from "react-router-dom";
+import { motion } from "framer-motion"
+import { Helmet } from "react-helmet"
+import { AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai"
+import { BiLogoFacebookCircle } from "react-icons/bi"
+import { FaUser } from "react-icons/fa"
+import { IoMdPricetag } from "react-icons/io"
+import { MdDateRange } from "react-icons/md"
+import { SlArrowRight } from "react-icons/sl"
+import { Link, useParams } from "react-router-dom"
 import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
-} from "react-share";
-import blogs from "../../data/blog.json";
-import { animation } from "../../utils/animation";
-import { ROUTES } from "../../utils/routes";
-import Recommended from "../Recommended/Recommended";
+} from "react-share"
+import blogs from "../../data/blog.json"
+import { animation } from "../../utils/animation"
+import { ROUTES } from "../../utils/routes"
+import Recommended from "../Recommended/Recommended"
 
 const SingleBlogPage = () => {
-  const { itemId } = useParams<{ itemId: string }>();
-  const blog = blogs.blog.find((item) => item.id === itemId);
-  const shareUrl = window.location.href;
+  const { itemId } = useParams<{ itemId: string }>()
+  const blog = blogs.blog.find((item) => item.id === itemId)
+  const shareUrl = window.location.href
 
   if (!blog) {
     return (
@@ -33,12 +34,15 @@ const SingleBlogPage = () => {
           Back To Blog 🚀
         </Link>
       </div>
-    );
+    )
   } else {
-    const { title, author, category, date, description, id, image, info } =
-      blog;
+    const { title, author, category, date, description, id, image, info } = blog
     return (
       <motion.div initial="hidden" whileInView="visible">
+        <Helmet>
+          <meta name="description" content="Single Blog page with article" />
+          <title>{title}</title>
+        </Helmet>
         <motion.div
           variants={animation}
           custom={2}
@@ -141,8 +145,8 @@ const SingleBlogPage = () => {
         </motion.div>
         <Recommended />
       </motion.div>
-    );
+    )
   }
-};
+}
 
-export default SingleBlogPage;
+export default SingleBlogPage

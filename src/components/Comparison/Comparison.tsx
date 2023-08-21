@@ -1,39 +1,47 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { MdNavigateNext } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { Product } from "../../data/productTypes";
-import { animation } from "../../utils/animation";
-import { ROUTES } from "../../utils/routes";
-import Recommended from "../Recommended/Recommended";
-import RatingStars from "../SingleProduct/RatingStats";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { addToCart, removeFromComparison } from "../store/slices/cartSlice";
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { MdNavigateNext } from "react-icons/md"
+import { Link } from "react-router-dom"
+import { Product } from "../../data/productTypes"
+import { animation } from "../../utils/animation"
+import { ROUTES } from "../../utils/routes"
+import Recommended from "../Recommended/Recommended"
+import RatingStars from "../SingleProduct/RatingStats"
+import { useAppDispatch, useAppSelector } from "../store/hooks"
+import { addToCart, removeFromComparison } from "../store/slices/cartSlice"
+import { Helmet } from "react-helmet"
 
 const Comparison = () => {
-  const [actions, setActions] = useState("");
-  const comparingItems = useAppSelector((item) => item.cart.compare);
+  const [actions, setActions] = useState("")
+  const comparingItems = useAppSelector((item) => item.cart.compare)
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const handleAddToCart = (currProduct: Product, action: string) => {
-    dispatch(addToCart(currProduct));
-    setActions(action);
+    dispatch(addToCart(currProduct))
+    setActions(action)
     setTimeout(() => {
-      setActions("");
-    }, 3000);
-  };
+      setActions("")
+    }, 3000)
+  }
 
   const handleRemoveFromComparison = (id: string, action: string) => {
-    dispatch(removeFromComparison(id));
-    setActions(action);
+    dispatch(removeFromComparison(id))
+    setActions(action)
     setTimeout(() => {
-      setActions("");
-    }, 3000);
-  };
+      setActions("")
+    }, 3000)
+  }
 
   return (
     <section>
+      <Helmet>
+        <meta
+          name="description"
+          content="Comparison page, compare our products"
+        />
+        <title>Comparison Page</title>
+      </Helmet>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -103,7 +111,7 @@ const Comparison = () => {
                 percent,
                 rating,
                 reviews,
-              } = item;
+              } = item
               return (
                 <motion.div
                   variants={animation}
@@ -174,7 +182,7 @@ const Comparison = () => {
                     Add To Cart
                   </button>
                 </motion.div>
-              );
+              )
             })}
           </div>
         ) : (
@@ -211,7 +219,7 @@ const Comparison = () => {
       )}
       <Recommended />
     </section>
-  );
-};
+  )
+}
 
-export default Comparison;
+export default Comparison

@@ -1,28 +1,29 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai";
-import { BiLogoFacebookCircle } from "react-icons/bi";
-import { SlArrowRight } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { Helmet } from "react-helmet"
+import { AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai"
+import { BiLogoFacebookCircle } from "react-icons/bi"
+import { SlArrowRight } from "react-icons/sl"
+import { Link } from "react-router-dom"
 import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
-} from "react-share";
-import { Product } from "../../data/productTypes";
-import { animation } from "../../utils/animation";
-import { ROUTES } from "../../utils/routes";
-import { useAppDispatch } from "../store/hooks";
-import { addToCart, addToComparison } from "../store/slices/cartSlice";
-import RatingStars from "./RatingStats";
-import TabContainer from "./TabContainer";
+} from "react-share"
+import { Product } from "../../data/productTypes"
+import { animation } from "../../utils/animation"
+import { ROUTES } from "../../utils/routes"
+import { useAppDispatch } from "../store/hooks"
+import { addToCart, addToComparison } from "../store/slices/cartSlice"
+import RatingStars from "./RatingStats"
+import TabContainer from "./TabContainer"
 
 type SingleProductProps = {
-  product: Product;
-};
+  product: Product
+}
 
 const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
-  const [productQuantity, setProductQuantity] = useState(1);
+  const [productQuantity, setProductQuantity] = useState(1)
   const {
     id,
     image,
@@ -34,31 +35,35 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
     rating,
     reviews,
     color,
-  } = product;
+  } = product
 
-  const url = window.location.href;
+  const url = window.location.href
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const handleAddToCart = (product: Product) => {
-    dispatch(addToCart({ ...product, quantity: productQuantity }));
-  };
+    dispatch(addToCart({ ...product, quantity: productQuantity }))
+  }
 
   const handleAddToComparing = (currProduct: Product) => {
-    dispatch(addToComparison(currProduct));
-  };
+    dispatch(addToComparison(currProduct))
+  }
 
   const handleQuantityDecrease = () => {
     if (productQuantity > 1) {
-      setProductQuantity(productQuantity - 1);
+      setProductQuantity(productQuantity - 1)
     }
-  };
+  }
 
   const handleQuantityIncrease = () => {
-    setProductQuantity(productQuantity + 1);
-  };
+    setProductQuantity(productQuantity + 1)
+  }
   return (
     <motion.div initial="hidden" whileInView="visible">
+      <Helmet>
+        <meta name="description" content={`${title} from our shop`} />
+        <title>{title}</title>
+      </Helmet>
       <motion.div
         variants={animation}
         custom={2}
@@ -185,7 +190,7 @@ const SingleProduct: React.FC<SingleProductProps> = ({ product }) => {
         </div>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default SingleProduct;
+export default SingleProduct

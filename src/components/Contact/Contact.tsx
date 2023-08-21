@@ -1,12 +1,21 @@
-import { motion } from "framer-motion";
-import { BsFillGeoAltFill, BsFillTelephoneFill } from "react-icons/bs";
-import { MdAccessTimeFilled, MdNavigateNext } from "react-icons/md";
-import { animation } from "../../utils/animation";
-import Recommended from "../Recommended/Recommended";
+import { motion } from "framer-motion"
+import { Helmet } from "react-helmet"
+import { BsFillGeoAltFill, BsFillTelephoneFill } from "react-icons/bs"
+import { MdAccessTimeFilled, MdNavigateNext } from "react-icons/md"
+import { animation } from "../../utils/animation"
+import Recommended from "../Recommended/Recommended"
 
 const Contact = () => {
   return (
     <section className="contacts-page">
+      <Helmet>
+        <meta
+          name="description"
+          content="Contact page - Get In Touch With Us
+          For More Information About Our Product & Services."
+        />
+        <title>Contact Page</title>
+      </Helmet>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.5 } }}
@@ -149,7 +158,7 @@ const Contact = () => {
       </div>
       <Recommended />
     </section>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact
