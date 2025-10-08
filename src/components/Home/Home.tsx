@@ -136,165 +136,174 @@ const Home = () => {
           sortedProducts={products.products}
         />
         <Link to={ROUTES.SHOP}>
-          <button className="mx-auto my-0 mt-4 block border border-orange-300 px-[20px] py-3 text-[12px] font-semibold  text-orange-400 transition-all duration-300 hover:bg-orange-400 hover:text-white md:mt-11 md:px-20 md:text-base">
+          <button
+            className="mx-auto my-0 mt-4 block border border-orange-300 px-[20px] py-3 text-[12px] font-semibold  text-orange-400 transition-all duration-300 hover:bg-orange-400 hover:text-white 
+                md:mt-11 md:px-20 md:text-base"
+          >
             Show More
           </button>
         </Link>
       </div>
-      <div className="slider-component relative mt-[50px] md:mt-[100px] flex flex-col md:flex-row justify-center items-center gap-[40px]">
-        <div className="xl:pl-[100px]">
-          <h2 className="font-bold md:text-xl lg:text-4xl">
-            50+ Beautiful rooms inspiration
-          </h2>
-          <div className="mt-2  text-sm font-medium text-gray-500 md:text-[12px] lg:text-base">
-            Our designer already made a lot of beautiful prototype of rooms that
-            inspire you
+      <div className="slider-component relative mt-[50px] md:mt-[100px] overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-[40px]">
+            <div className="w-full md:w-2/5 lg:w-1/3 flex-shrink-0 xl:pl-[100px]">
+              <h2 className="font-bold md:text-xl lg:text-4xl">
+                50+ Beautiful rooms inspiration
+              </h2>
+              <div className="mt-2  text-sm font-medium text-gray-500 md:text-[12px] lg:text-base">
+                Our designer already made a lot of beautiful prototype of rooms
+                that inspire you
+              </div>
+              <Link
+                to={ROUTES.BLOG}
+                className="mt-5 block w-[150px] border border-orange-400 bg-orange-400 py-3 text-center text-xs font-semibold text-white transition-all duration-300 hover:bg-white hover:text-orange-400 md:mt-9 md:w-[176px] xl:text-base"
+              >
+                Explore More
+              </Link>
+            </div>
+            <div className="w-full md:w-3/5 lg:w-2/3 flex-shrink-0">
+              <Swiper
+                effect={"coverflow"}
+                breakpoints={{
+                  300: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    pagination: false,
+                  },
+                }}
+                grabCursor={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                centeredSlides={true}
+                slidesPerView={"auto"}
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 1,
+                  depth: 100,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
+                pagination={pagination}
+                modules={[Autoplay, EffectCoverflow, Pagination]}
+                className="mySwiper w-full h-[250px] md:h-[380px] lg:h-[480px] xl:h-[580px]"
+              >
+                <SwiperSlide className="h-full max-w-[400px] relative">
+                  <img className="h-full" src="images/bed-room-peace.png" />
+                  <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+                    <div>
+                      01{" "}
+                      <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
+                      Bed Room
+                    </div>
+                    <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
+                      Inner Peace
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="h-full max-w-[400px]">
+                  <img
+                    className="h-full object-cover w-full"
+                    src="images/kitchen-room.png"
+                  />
+                  <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+                    <div>
+                      02{" "}
+                      <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
+                      Kitchen
+                    </div>
+                    <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
+                      Gentle Breeze
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="h-full max-w-[400px]">
+                  <img
+                    className="h-full object-cover w-full"
+                    src="images/beautiful1.jpg"
+                  />
+                  <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+                    <div>
+                      03{" "}
+                      <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
+                      Living Room
+                    </div>
+                    <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
+                      Blissful Abode
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="h-full max-w-[400px]">
+                  <img
+                    className="h-full object-cover w-full"
+                    src="images/beautiful2.jpg"
+                  />
+                  <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+                    <div>
+                      04{" "}
+                      <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
+                      Hall
+                    </div>
+                    <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
+                      Sanctuary of Souls
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="h-full max-w-[400px]">
+                  <img
+                    className="h-full object-cover w-full"
+                    src="images/beautiful3.jpg"
+                  />
+                  <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+                    <div>
+                      05{" "}
+                      <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
+                      Study
+                    </div>
+                    <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
+                      Sanctuary of Souls
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="h-full max-w-[400px]">
+                  <img
+                    className="h-full object-cover w-full"
+                    src="images/beautiful4.jpg"
+                  />
+                  <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+                    <div>
+                      06{" "}
+                      <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
+                      Sitting-room
+                    </div>
+                    <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
+                      Still Waters Refuge
+                    </div>
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide className="h-full max-w-[400px]">
+                  <img
+                    className="h-full object-cover w-full"
+                    src="images/beautiful5.jpg"
+                  />
+                  <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
+                    <div>
+                      07{" "}
+                      <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
+                      Bed Room
+                    </div>
+                    <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
+                      Elysian Fields
+                    </div>
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </div>
           </div>
-          <Link
-            to={ROUTES.BLOG}
-            className="mt-5 block w-[150px] border border-orange-400 bg-orange-400 py-3 text-center text-xs font-semibold text-white transition-all duration-300 hover:bg-white hover:text-orange-400 md:mt-9 md:w-[176px] xl:text-base"
-          >
-            Explore More
-          </Link>
         </div>
-        <Swiper
-          effect={"coverflow"}
-          breakpoints={{
-            300: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-              pagination: false,
-            },
-          }}
-          grabCursor={true}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          centeredSlides={true}
-          slidesPerView={"auto"}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 1,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          pagination={pagination}
-          modules={[Autoplay, EffectCoverflow, Pagination]}
-          className="mySwiper w-full h-[250px] md:h-[380px] lg:h-[480px] xl:h-[580px]"
-        >
-          <SwiperSlide className="h-full max-w-[400px] relative">
-            <img className="h-full" src="images/bed-room-peace.png" />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
-              <div>
-                01{" "}
-                <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
-                Bed Room
-              </div>
-              <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
-                Inner Peace
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-[400px]">
-            <img
-              className="h-full object-cover w-full"
-              src="images/kitchen-room.png"
-            />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
-              <div>
-                02{" "}
-                <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
-                Kitchen
-              </div>
-              <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
-                Gentle Breeze
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-[400px]">
-            <img
-              className="h-full object-cover w-full"
-              src="images/beautiful1.jpg"
-            />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
-              <div>
-                03{" "}
-                <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
-                Living Room
-              </div>
-              <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
-                Blissful Abode
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-[400px]">
-            <img
-              className="h-full object-cover w-full"
-              src="images/beautiful2.jpg"
-            />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
-              <div>
-                04{" "}
-                <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
-                Hall
-              </div>
-              <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
-                Sanctuary of Souls
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-[400px]">
-            <img
-              className="h-full object-cover w-full"
-              src="images/beautiful3.jpg"
-            />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
-              <div>
-                05{" "}
-                <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
-                Study
-              </div>
-              <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
-                Sanctuary of Souls
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-[400px]">
-            <img
-              className="h-full object-cover w-full"
-              src="images/beautiful4.jpg"
-            />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
-              <div>
-                06{" "}
-                <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
-                Sitting-room
-              </div>
-              <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
-                Still Waters Refuge
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="h-full max-w-[400px]">
-            <img
-              className="h-full object-cover w-full"
-              src="images/beautiful5.jpg"
-            />
-            <div className="absolute bottom-8 left-1 bg-white p-2 text-[10px] xl:text-base md:bottom-14 md:left-2 md:px-7 md:pb-8 md:pt-4 lg:left-7 ">
-              <div>
-                07{" "}
-                <div className="mx-2 hidden h-1 w-7 border border-t-black md:inline-block"></div>{" "}
-                Bed Room
-              </div>
-              <div className="mt-2 font-semibold md:text-sm lg:text-3xl">
-                Elysian Fields
-              </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
       </div>
       <motion.div
         initial="hidden"
